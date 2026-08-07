@@ -7,7 +7,7 @@ product_role: Operating business / future AI Support Customer Zero
 product_ai: ChatGPT
 engineering_ai: Claude
 
-status: initialization
+status: product_definition_v1
 
 cross_product_dependencies:
   - AI Support
