@@ -18,7 +18,7 @@ Team Chouinard
 
 ## Product Role
 
-Independent operating business.
+Independent family-led music, recording, publishing, and creative production business.
 
 Chouinard Studios is not:
 
@@ -26,30 +26,47 @@ Chouinard Studios is not:
 - part of the AI Support repository
 - a QA harness
 - a fake tenant
+- primarily a conventional studio-for-hire
 
-It is a real business with its own brand, website, content, customer journeys, products or services, code, deployment, and Product KB.
+It is a real operating business with its own brand, website, content, creative work, catalog, customer journeys, code, deployment, and Product KB.
 
-## Current Business Scope
+## Brand Identity
 
-The complete business model has not yet been defined.
+The public-facing brand name is Chouinard Studios. The singular domain `chouinardstudio.com` and repository name `chouinardstudio` are technical identifiers only.
 
-Potential future areas may include:
+Music is the flagship creative expression of the brand.
 
-- audiobook publishing
-- creative and media work
-- music-related work
-- other Chouinard Studios offerings
+The brand should feel warm, exceptional, creative, musical, human, timeless, sophisticated, craft-driven, inviting, and cinematic.
 
-These are possibilities, not yet approved final scope.
+## Business Scope
+
+Chouinard Studios primarily creates, produces, publishes, and develops its own work.
+
+Current approved business areas include:
+
+- original music and recordings
+- a curated audiobook and storytelling publishing catalog
+- studio production supporting Chouinard Studios' own works
+- evolving creative/media projects that naturally grow from music and storytelling
+
+Selective outside collaborations may be considered by inquiry. Chouinard Studios is not launching as an hourly rental studio, standardized production-services business, or narrator-for-hire business.
+
+## Audience Priority
+
+The primary near-term audience-acquisition focus is audiobook listeners, readers, and families.
+
+Music listeners and followers are a secondary audience that can grow organically alongside the audiobook business.
+
+English-language learners and international audiences are an emerging opportunity for future storytelling and learning experiences.
 
 ## AI Support Relationship
 
 Chouinard Studios is expected to become a real AI Support customer and Customer Zero when AI Support is ready.
 
-The relationship must not create premature architectural coupling.
+The relationship must not create premature architectural coupling. Chouinard Studios must remain a strong independent business and website regardless of AI Support availability.
 
 ## Definition Status
 
-Product definition is intentionally incomplete.
+Business identity, brand hierarchy, initial business model, near-term audience priority, and visual direction have been approved at v1 level.
 
-Business purpose, audiences, offerings, brand, customer journeys, content architecture, conversion objectives, and experience strategy will be defined during the Product Definition phase before website implementation begins.
+Detailed experience architecture, launch information architecture, audiobook catalog strategy, conversion journeys, technical architecture, hosting, CMS, and production AI Support integration remain to be defined before full implementation.
