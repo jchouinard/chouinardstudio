@@ -55,6 +55,20 @@ The initial implementation should prefer the lightest maintainable approach that
 
 The content model should be designed so a CMS or other editorial interface can be added later without requiring a wholesale redesign of the website or catalog.
 
+## Alive Without Constant Maintenance
+
+The public site must feel alive, vibrant, and actively creative even when the family has limited time to manually manage the website.
+
+Currentness should come primarily from real creative output flowing through reusable site surfaces, not from an obligation to constantly write blog posts or perform cosmetic homepage edits.
+
+The experience should be designed so one new piece of real work can refresh multiple appropriate surfaces automatically. For example, a newly published music item may appear in Latest Music, Current Work, and the homepage activity stream without duplicate manual entry.
+
+The site may use dynamic presentation techniques such as featured-item rotation, recent-work ordering, embedded media, subtle motion, changing imagery, current-project states, and automatically populated latest-content areas to create a sense of ongoing activity while remaining editorially controlled.
+
+Automation must never fabricate activity, dates, releases, popularity, clients, or creative work. The site should feel active because Chouinard Studios is active, not because the interface simulates activity.
+
+The operating goal is high perceived freshness with low maintenance burden.
+
 ## Currentness Principle
 
 The public experience should not depend on a rigid editorial calendar.
