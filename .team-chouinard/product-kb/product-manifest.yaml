@@ -1,0 +1,22 @@
+organization: Team Chouinard
+product: Chouinard Studios
+repository: chouinardstudio
+domain: chouinardstudio.com
+product_role: Operating business / future AI Support Customer Zero
+
+product_ai: ChatGPT
+engineering_ai: Claude
+
+status: initialization
+
+cross_product_dependencies:
+  - AI Support
+
+cross_product_finding_destination:
+  C:\Users\jocho\Projects\team-chouinard\CROSS-PRODUCT-FINDINGS.md
+
+repository_boundary:
+  independent_repository: true
+  monorepo: false
+  git_submodules: false
+  cross_repository_source_dependencies: explicit_approval_required
