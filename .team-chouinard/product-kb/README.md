@@ -40,10 +40,10 @@ Do not duplicate organization-level Team Chouinard documents here.
 
 ## Initial Records
 
-- product-manifest.yaml — machine-readable product identity
-- PRODUCT-IDENTITY.md — purpose, audiences, positioning and boundaries
-- EXPERIENCE-CATALOG.md — defined product experiences
-- JOURNEY-SPINE.md — primary customer journeys
-- FOUNDER-DECISIONS.md — approved founder decisions for this product
-- ARCHITECTURE.md — product-specific technical architecture
-- CROSS-PRODUCT-DEPENDENCIES.md — approved relationships with other products
+- product-manifest.yaml â€” machine-readable product identity
+- PRODUCT-IDENTITY.md â€” purpose, audiences, positioning and boundaries
+- EXPERIENCE-CATALOG.md â€” defined product experiences
+- JOURNEY-SPINE.md â€” primary customer journeys
+- FOUNDER-DECISIONS.md â€” approved founder decisions for this product
+- ARCHITECTURE.md â€” product-specific technical architecture
+- CROSS-PRODUCT-DEPENDENCIES.md â€” approved relationships with other products
