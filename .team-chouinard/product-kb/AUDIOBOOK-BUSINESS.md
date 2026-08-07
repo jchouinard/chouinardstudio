@@ -42,6 +42,16 @@ The objective is to build an imprint whose selection and production quality beco
 
 The ambition is that the phrase "A Chouinard Studios Production" eventually signals a trusted standard of storytelling, performance, sound and care.
 
+## Release Strategy Principle
+
+The preferred starting presentation is a small, coherent collection or release wave rather than a random pile of unrelated titles.
+
+However, the release structure must remain easy to change as real production begins. Chouinard Studios may launch individual titles, collections, themed groups, or a hybrid of these depending on which works are completed first and what proves strongest with listeners.
+
+The website and catalog model should therefore support flexible grouping and re-grouping without requiring a redesign or migration.
+
+Do not hard-code the business around a single launch collection, title count, series structure, or release cadence.
+
 ## Production Philosophy
 
 Production quality is part of the product, not merely a technical step.
@@ -77,12 +87,11 @@ Exact distribution partners, direct-sales mechanics, pricing and release cadence
 The following are not yet approved:
 
 - first specific titles
-- initial collection structure
+- first release grouping
 - release cadence
 - pricing
 - direct purchase model
 - exact distribution platforms
-- whether launch begins with individual titles, collections, or both
-- catalog taxonomy
+- catalog taxonomy details
 - email/listener membership strategy
 - first English-learning experience
