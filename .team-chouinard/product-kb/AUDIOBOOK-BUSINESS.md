@@ -74,13 +74,21 @@ Possible future experiences may combine:
 
 This is a future product direction, not a launch requirement.
 
-## Distribution and Audience Ownership
+## Distribution and Purchase Model
 
-The business should avoid depending on a single distribution platform where practical.
+Purchasing and primary listening will happen through external distribution platforms.
 
-The long-term goal is to build both broad distribution and direct audience relationships through the Chouinard Studios brand and website.
+Chouinard Studios does not plan to operate its own audiobook checkout, payment, entitlement, DRM, or file-delivery system.
 
-Exact distribution partners, direct-sales mechanics, pricing and release cadence remain to be defined.
+chouinardstudio.com should serve as the branded discovery, catalog, preview, and audience-relationship experience. Each title should be able to link cleanly to one or more external listening or purchase destinations.
+
+The website should remain distribution-platform-agnostic so the combination of retailers and listening platforms can change over time without restructuring the catalog experience.
+
+## Audience Ownership
+
+Even though commerce occurs externally, Chouinard Studios should avoid becoming dependent on any one distributor where practical.
+
+The long-term goal is broad external distribution combined with direct audience relationships through the Chouinard Studios brand and website.
 
 ## Current Unknowns
 
@@ -89,8 +97,7 @@ The following are not yet approved:
 - first specific titles
 - first release grouping
 - release cadence
-- pricing
-- direct purchase model
+- pricing on external platforms
 - exact distribution platforms
 - catalog taxonomy details
 - email/listener membership strategy
