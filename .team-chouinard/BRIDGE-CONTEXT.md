@@ -82,8 +82,10 @@ Reason:
 
 ## Current Approved Scope
 
-Environment and Team OS initialization only.
+Environment, Git/GitHub setup, Product KB initialization, VS Code isolation, and engineering handoff are complete.
 
-Do not begin website implementation until repository setup, Git/GitHub setup, Product KB initialization, VS Code isolation, and engineering handoff are complete.
+Product Definition v1 is in progress and approved records now include the business model, brand direction, audiobook business direction, and design-reference guidance.
+
+Do not begin application implementation until the Product Lead delivers an explicit implementation package covering launch experience scope, information architecture, primary journeys, and architecture-driving product decisions.
 
 Do not invent unapproved business requirements.
