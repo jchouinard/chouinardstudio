@@ -38,12 +38,23 @@ Do not fill unknown sections with assumptions.
 
 Do not duplicate organization-level Team Chouinard documents here.
 
-## Initial Records
+## Current Records
 
-- product-manifest.yaml — machine-readable product identity
+- product-manifest.yaml — machine-readable product identity and phase status
 - PRODUCT-IDENTITY.md — purpose, audiences, positioning and boundaries
-- EXPERIENCE-CATALOG.md — defined product experiences
-- JOURNEY-SPINE.md — primary customer journeys
+- BUSINESS-DEFINITION.md — approved business model and operating direction
+- BRAND-DIRECTION.md — approved brand hierarchy, personality and visual direction
+- AUDIOBOOK-BUSINESS.md — approved audiobook imprint, catalog and release principles
+- EXPERIENCE-CATALOG.md — defined product experiences as they are approved
+- JOURNEY-SPINE.md — primary customer journeys as they are approved
 - FOUNDER-DECISIONS.md — approved founder decisions for this product
 - ARCHITECTURE.md — product-specific technical architecture
 - CROSS-PRODUCT-DEPENDENCIES.md — approved relationships with other products
+
+## Design References
+
+Visual reference guidance lives in:
+
+.team-chouinard/design-references/
+
+These references define the target Chouinard Studios visual world and should be used together with BRAND-DIRECTION.md. They do not replace factual documentation of the real studio environment.
