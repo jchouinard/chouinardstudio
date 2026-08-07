@@ -70,6 +70,16 @@ Primary visual ingredients:
 
 The visual experience should combine old-world craft with contemporary production capability.
 
+## Reference Environment Status
+
+The current reference images are aspirational / generated concept art defining the target Chouinard Studios aesthetic and the physical studio environment being built toward. They are not documentary photography of a completed room.
+
+Use them as design-direction references for palette, materials, lighting, composition, atmosphere, equipment presence, and emotional tone.
+
+Public-facing credibility should ultimately be grounded in real Chouinard Studios work and, as the physical studio develops, real photography of the actual environment. Concept imagery must not be presented in a way that falsely implies a completed physical space when it is not one.
+
+The target is convergence: the physical studio and the website should increasingly inhabit the same visual world represented by the reference set.
+
 ## Reference Equipment / Atmosphere
 
 The current visual reference set strongly features:
@@ -105,7 +115,9 @@ Prefer:
 - real current work
 - selective behind-the-scenes details
 
-Avoid bright stock-studio imagery, generic musicians, sterile white rooms, neon cyber aesthetics, or images that feel disconnected from the actual Chouinard Studios environment.
+Avoid bright stock-studio imagery, generic musicians, sterile white rooms, neon cyber aesthetics, or imagery that violates the approved Chouinard Studios visual world.
+
+As real studio photography becomes available, prefer it for factual representation of the business and use the concept-reference set as the aesthetic benchmark rather than as evidence of completed facilities.
 
 ## Typography & Layout Direction
 
