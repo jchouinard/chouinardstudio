@@ -35,6 +35,9 @@ npm run dev          # http://localhost:3000
 | `npm run start` | Serve the production build |
 | `npm run check` | typecheck + lint + content validation + tests |
 | `npm run content:validate` | Content report without a full build |
+| `npm run visual:review` | Screenshot every page at desktop + mobile for Product Lead review |
+
+Visual review artifacts land in `.review/screenshots/` (gitignored). See [.team-chouinard/VISUAL-REVIEW.md](.team-chouinard/VISUAL-REVIEW.md).
 
 ### Preview build
 

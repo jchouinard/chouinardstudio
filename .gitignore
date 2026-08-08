@@ -5,6 +5,9 @@ dist/
 build/
 coverage/
 .vercel
+
+# Visual review artifacts — regenerated on demand, never product content
+.review/
 next-env.d.ts
 *.tsbuildinfo
 

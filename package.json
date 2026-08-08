@@ -12,6 +12,7 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "content:validate": "tsx scripts/validate-content.ts",
+    "visual:review": "tsx scripts/visual-review.ts",
     "check": "npm run typecheck && npm run lint && npm run content:validate && npm run test"
   },
   "dependencies": {
@@ -27,6 +28,7 @@
     "@types/react-dom": "19.2.4",
     "eslint": "^9.39.5",
     "eslint-config-next": "16.3.0",
+    "playwright-core": "^1.62.1",
     "tailwindcss": "4.3.3",
     "tsx": "4.23.11",
     "typescript": "5.9.3",
