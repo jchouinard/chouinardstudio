@@ -1,0 +1,199 @@
+{
+  "capturedAt": "2026-08-08T04:33:59.781Z",
+  "baseUrl": "https://chouinardstudio.com",
+  "browser": "chrome",
+  "shots": [
+    {
+      "route": "/",
+      "viewport": "desktop-1440",
+      "file": "C:\\Users\\jocho\\Projects\\chouinardstudio\\.review\\screenshots\\home--desktop-1440.png",
+      "status": 200,
+      "bytes": 3948753,
+      "problems": []
+    },
+    {
+      "route": "/stories",
+      "viewport": "desktop-1440",
+      "file": "C:\\Users\\jocho\\Projects\\chouinardstudio\\.review\\screenshots\\stories--desktop-1440.png",
+      "status": 200,
+      "bytes": 1878851,
+      "problems": []
+    },
+    {
+      "route": "/music",
+      "viewport": "desktop-1440",
+      "file": "C:\\Users\\jocho\\Projects\\chouinardstudio\\.review\\screenshots\\music--desktop-1440.png",
+      "status": 200,
+      "bytes": 1428372,
+      "problems": []
+    },
+    {
+      "route": "/studio",
+      "viewport": "desktop-1440",
+      "file": "C:\\Users\\jocho\\Projects\\chouinardstudio\\.review\\screenshots\\studio--desktop-1440.png",
+      "status": 200,
+      "bytes": 902455,
+      "problems": []
+    },
+    {
+      "route": "/current-work",
+      "viewport": "desktop-1440",
+      "file": "C:\\Users\\jocho\\Projects\\chouinardstudio\\.review\\screenshots\\current-work--desktop-1440.png",
+      "status": 200,
+      "bytes": 966836,
+      "problems": []
+    },
+    {
+      "route": "/listening-room",
+      "viewport": "desktop-1440",
+      "file": "C:\\Users\\jocho\\Projects\\chouinardstudio\\.review\\screenshots\\listening-room--desktop-1440.png",
+      "status": 200,
+      "bytes": 544595,
+      "problems": []
+    },
+    {
+      "route": "/about",
+      "viewport": "desktop-1440",
+      "file": "C:\\Users\\jocho\\Projects\\chouinardstudio\\.review\\screenshots\\about--desktop-1440.png",
+      "status": 200,
+      "bytes": 616106,
+      "problems": []
+    },
+    {
+      "route": "/contact",
+      "viewport": "desktop-1440",
+      "file": "C:\\Users\\jocho\\Projects\\chouinardstudio\\.review\\screenshots\\contact--desktop-1440.png",
+      "status": 200,
+      "bytes": 543790,
+      "problems": []
+    },
+    {
+      "route": "/stories/the-secret-garden",
+      "viewport": "desktop-1440",
+      "file": "C:\\Users\\jocho\\Projects\\chouinardstudio\\.review\\screenshots\\story-detail--desktop-1440.png",
+      "status": 200,
+      "bytes": 1195606,
+      "problems": []
+    },
+    {
+      "route": "/stories/collections/cozy-classics",
+      "viewport": "desktop-1440",
+      "file": "C:\\Users\\jocho\\Projects\\chouinardstudio\\.review\\screenshots\\collection-detail--desktop-1440.png",
+      "status": 200,
+      "bytes": 1123055,
+      "problems": []
+    },
+    {
+      "route": "/music/walnut-room",
+      "viewport": "desktop-1440",
+      "file": "C:\\Users\\jocho\\Projects\\chouinardstudio\\.review\\screenshots\\music-detail--desktop-1440.png",
+      "status": 200,
+      "bytes": 1077621,
+      "problems": []
+    },
+    {
+      "route": "/studio/notes/room-tone-as-an-instrument",
+      "viewport": "desktop-1440",
+      "file": "C:\\Users\\jocho\\Projects\\chouinardstudio\\.review\\screenshots\\studio-note-detail--desktop-1440.png",
+      "status": 200,
+      "bytes": 508576,
+      "problems": []
+    },
+    {
+      "route": "/",
+      "viewport": "mobile-390",
+      "file": "C:\\Users\\jocho\\Projects\\chouinardstudio\\.review\\screenshots\\home--mobile-390.png",
+      "status": 200,
+      "bytes": 2103789,
+      "problems": []
+    },
+    {
+      "route": "/stories",
+      "viewport": "mobile-390",
+      "file": "C:\\Users\\jocho\\Projects\\chouinardstudio\\.review\\screenshots\\stories--mobile-390.png",
+      "status": 200,
+      "bytes": 1457017,
+      "problems": []
+    },
+    {
+      "route": "/music",
+      "viewport": "mobile-390",
+      "file": "C:\\Users\\jocho\\Projects\\chouinardstudio\\.review\\screenshots\\music--mobile-390.png",
+      "status": 200,
+      "bytes": 1097504,
+      "problems": []
+    },
+    {
+      "route": "/studio",
+      "viewport": "mobile-390",
+      "file": "C:\\Users\\jocho\\Projects\\chouinardstudio\\.review\\screenshots\\studio--mobile-390.png",
+      "status": 200,
+      "bytes": 595931,
+      "problems": []
+    },
+    {
+      "route": "/current-work",
+      "viewport": "mobile-390",
+      "file": "C:\\Users\\jocho\\Projects\\chouinardstudio\\.review\\screenshots\\current-work--mobile-390.png",
+      "status": 200,
+      "bytes": 796498,
+      "problems": []
+    },
+    {
+      "route": "/listening-room",
+      "viewport": "mobile-390",
+      "file": "C:\\Users\\jocho\\Projects\\chouinardstudio\\.review\\screenshots\\listening-room--mobile-390.png",
+      "status": 200,
+      "bytes": 427688,
+      "problems": []
+    },
+    {
+      "route": "/about",
+      "viewport": "mobile-390",
+      "file": "C:\\Users\\jocho\\Projects\\chouinardstudio\\.review\\screenshots\\about--mobile-390.png",
+      "status": 200,
+      "bytes": 468048,
+      "problems": []
+    },
+    {
+      "route": "/contact",
+      "viewport": "mobile-390",
+      "file": "C:\\Users\\jocho\\Projects\\chouinardstudio\\.review\\screenshots\\contact--mobile-390.png",
+      "status": 200,
+      "bytes": 409431,
+      "problems": []
+    },
+    {
+      "route": "/stories/the-secret-garden",
+      "viewport": "mobile-390",
+      "file": "C:\\Users\\jocho\\Projects\\chouinardstudio\\.review\\screenshots\\story-detail--mobile-390.png",
+      "status": 200,
+      "bytes": 880140,
+      "problems": []
+    },
+    {
+      "route": "/stories/collections/cozy-classics",
+      "viewport": "mobile-390",
+      "file": "C:\\Users\\jocho\\Projects\\chouinardstudio\\.review\\screenshots\\collection-detail--mobile-390.png",
+      "status": 200,
+      "bytes": 841539,
+      "problems": []
+    },
+    {
+      "route": "/music/walnut-room",
+      "viewport": "mobile-390",
+      "file": "C:\\Users\\jocho\\Projects\\chouinardstudio\\.review\\screenshots\\music-detail--mobile-390.png",
+      "status": 200,
+      "bytes": 801266,
+      "problems": []
+    },
+    {
+      "route": "/studio/notes/room-tone-as-an-instrument",
+      "viewport": "mobile-390",
+      "file": "C:\\Users\\jocho\\Projects\\chouinardstudio\\.review\\screenshots\\studio-note-detail--mobile-390.png",
+      "status": 200,
+      "bytes": 412096,
+      "problems": []
+    }
+  ]
+}
