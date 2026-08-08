@@ -1,0 +1,326 @@
+@import 'tailwindcss';
+
+/* ---------------------------------------------------------------------------
+   Chouinard Studios design tokens
+
+   Derived from product-kb/BRAND-DIRECTION.md and design-references/README.md:
+   deep warm charcoal, dark walnut, burgundy/oxblood, restrained brass,
+   warm ivory. Change values here and the whole site follows.
+--------------------------------------------------------------------------- */
+
+@theme {
+  /* Warm near-black surfaces */
+  --color-ink-950: #070605;
+  --color-ink-900: #0c0a09;
+  --color-ink-850: #12100e;
+  --color-ink-800: #171412;
+  --color-ink-700: #1f1a17;
+  --color-ink-600: #2a231f;
+  --color-ink-500: #3a302a;
+
+  /* Dark walnut hardwood */
+  --color-walnut-900: #241811;
+  --color-walnut-800: #322218;
+  --color-walnut-700: #452f21;
+  --color-walnut-600: #5c3f2c;
+  --color-walnut-500: #77543b;
+
+  /* Burgundy / oxblood */
+  --color-oxblood-900: #350d16;
+  --color-oxblood-800: #4a121f;
+  --color-oxblood-700: #5f1727;
+  --color-oxblood-600: #7a1e32;
+  --color-burgundy-500: #93253c;
+  /* Used for the "Example" badge label. Lightened from #b03a52 (3.36:1) so
+     small uppercase text clears WCAG AA on the darkest surface. */
+  --color-burgundy-400: #cc5e75;
+
+  /* Restrained brass / antique gold */
+  --color-brass-700: #8a6a35;
+  --color-brass-600: #a88243;
+  --color-brass-500: #c2a063;
+  --color-brass-400: #d4b87f;
+  --color-brass-300: #e3d0a4;
+
+  /* Warm ivory */
+  --color-ivory-50: #fbf7f0;
+  --color-ivory-100: #f3ece1;
+  --color-ivory-200: #e4d9c9;
+  --color-ivory-300: #c9bca9;
+  --color-ivory-400: #a29582;
+  /* Tertiary text (dates, captions, footer). Lightened from #7e7364 (4.09:1
+     on ink-850) to clear WCAG AA at small sizes on every surface used. */
+  --color-ivory-500: #8b8071;
+
+  --font-display: var(--font-fraunces), 'Iowan Old Style', Georgia, serif;
+  --font-sans: var(--font-work-sans), ui-sans-serif, system-ui, sans-serif;
+
+  --radius-card: 2px;
+
+  --ease-curtain: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* ---------------------------------------------------------------------------
+   Base
+--------------------------------------------------------------------------- */
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--color-ink-900);
+    color: var(--color-ivory-200);
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    color: var(--color-ivory-100);
+    font-weight: 400;
+    line-height: 1.08;
+    letter-spacing: -0.015em;
+  }
+
+  ::selection {
+    background-color: var(--color-oxblood-700);
+    color: var(--color-ivory-50);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-brass-500);
+    outline-offset: 3px;
+    border-radius: 1px;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  ::-webkit-scrollbar {
+    width: 11px;
+    height: 11px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--color-ink-950);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-ink-600);
+    border: 3px solid var(--color-ink-950);
+    border-radius: 99px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--color-walnut-700);
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Atmosphere — the cinematic layer.
+
+   No studio photography exists yet, so warmth and depth are produced with
+   light, grain and material gradients rather than stock imagery. Every one of
+   these is a background treatment: real photography drops in above them
+   without any of this being reworked.
+--------------------------------------------------------------------------- */
+
+/* Fine film grain over the whole page. */
+.grain-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  pointer-events: none;
+  opacity: 0.038;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Intimate pools of warm practical light. */
+.light-pool {
+  position: absolute;
+  border-radius: 9999px;
+  pointer-events: none;
+  filter: blur(72px);
+}
+
+.light-pool--brass {
+  background: radial-gradient(
+    circle,
+    color-mix(in oklab, var(--color-brass-500) 26%, transparent) 0%,
+    transparent 68%
+  );
+}
+
+.light-pool--oxblood {
+  background: radial-gradient(
+    circle,
+    color-mix(in oklab, var(--color-oxblood-600) 34%, transparent) 0%,
+    transparent 70%
+  );
+}
+
+.light-pool--walnut {
+  background: radial-gradient(
+    circle,
+    color-mix(in oklab, var(--color-walnut-600) 30%, transparent) 0%,
+    transparent 70%
+  );
+}
+
+/* Vignette that keeps deep shadows readable. */
+.vignette::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse 120% 90% at 50% 40%,
+    transparent 35%,
+    color-mix(in oklab, var(--color-ink-950) 78%, transparent) 100%
+  );
+}
+
+/* Dark walnut grain, used sparingly on panels. */
+.walnut-panel {
+  background-color: var(--color-walnut-900);
+  background-image:
+    repeating-linear-gradient(
+      92deg,
+      color-mix(in oklab, var(--color-walnut-700) 42%, transparent) 0px,
+      transparent 2px,
+      transparent 7px,
+      color-mix(in oklab, var(--color-walnut-800) 60%, transparent) 9px
+    ),
+    linear-gradient(180deg, var(--color-walnut-800) 0%, var(--color-walnut-900) 100%);
+}
+
+/* A single brass hairline that fades at both ends. */
+.hairline {
+  height: 1px;
+  border: 0;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    color-mix(in oklab, var(--color-brass-600) 60%, transparent) 22%,
+    color-mix(in oklab, var(--color-brass-400) 75%, transparent) 50%,
+    color-mix(in oklab, var(--color-brass-600) 60%, transparent) 78%,
+    transparent 100%
+  );
+}
+
+/* Rich textile weave — a restrained nod to the Persian-rug influence. */
+.textile {
+  background-image:
+    repeating-linear-gradient(
+      45deg,
+      color-mix(in oklab, var(--color-oxblood-800) 22%, transparent) 0px,
+      color-mix(in oklab, var(--color-oxblood-800) 22%, transparent) 1px,
+      transparent 1px,
+      transparent 6px
+    ),
+    repeating-linear-gradient(
+      -45deg,
+      color-mix(in oklab, var(--color-walnut-700) 18%, transparent) 0px,
+      color-mix(in oklab, var(--color-walnut-700) 18%, transparent) 1px,
+      transparent 1px,
+      transparent 6px
+    );
+}
+
+/* ---------------------------------------------------------------------------
+   Typography helpers
+--------------------------------------------------------------------------- */
+
+.eyebrow {
+  font-family: var(--font-sans);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--color-brass-400);
+}
+
+.display-xl {
+  font-size: clamp(2.75rem, 8.5vw, 6.5rem);
+  line-height: 0.98;
+  letter-spacing: -0.03em;
+}
+
+.display-lg {
+  font-size: clamp(2.25rem, 5.5vw, 4rem);
+  line-height: 1.04;
+  letter-spacing: -0.022em;
+}
+
+.display-md {
+  font-size: clamp(1.75rem, 3.4vw, 2.75rem);
+  line-height: 1.12;
+  letter-spacing: -0.018em;
+}
+
+.lede {
+  font-size: clamp(1.0625rem, 1.6vw, 1.3125rem);
+  line-height: 1.68;
+  color: var(--color-ivory-300);
+}
+
+.prose-warm p {
+  margin-bottom: 1.15em;
+  color: var(--color-ivory-300);
+}
+.prose-warm p:last-child {
+  margin-bottom: 0;
+}
+
+/* ---------------------------------------------------------------------------
+   Motion — minimal and deliberate, and fully surrendered to reduced-motion.
+--------------------------------------------------------------------------- */
+
+@keyframes breathe {
+  0%,
+  100% {
+    transform: scaleY(0.42);
+    opacity: 0.55;
+  }
+  50% {
+    transform: scaleY(1);
+    opacity: 1;
+  }
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.animate-rise {
+  animation: rise 900ms var(--ease-curtain) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
