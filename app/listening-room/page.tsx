@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 
-import { CuratedCard } from '@/components/ui/Cards'
+import { CuratedRow } from '@/components/ui/Cards'
 import { PageHeader, Section } from '@/components/ui/Section'
 import { byFeature, curated, visible } from '@/content'
 
@@ -39,11 +39,11 @@ export default function ListeningRoomPage() {
           const inCategory = items.filter((item) => item.category === category)
 
           return (
-            <div key={category} className="mb-16 last:mb-0">
-              <h2 className="eyebrow mb-8">{categoryLabels[category] ?? category}</h2>
-              <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            <div key={category} className="mb-14 last:mb-0">
+              <h2 className="eyebrow-muted mb-4">{categoryLabels[category] ?? category}</h2>
+              <div className="border-t border-ink-800">
                 {inCategory.map((item) => (
-                  <CuratedCard key={item.slug} item={item} />
+                  <CuratedRow key={item.slug} item={item} />
                 ))}
               </div>
             </div>

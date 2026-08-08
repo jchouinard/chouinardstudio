@@ -38,6 +38,7 @@ interface ArtworkProps {
   title: string
   subtitle?: string | undefined
   ratio?: ArtworkRatio
+  texture?: 'wood' | 'paper'
   sizes?: string
   priority?: boolean
   className?: string
@@ -49,6 +50,7 @@ export function Artwork({
   title,
   subtitle,
   ratio = 'square',
+  texture = 'wood',
   sizes = '(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw',
   priority = false,
   className = '',
@@ -79,6 +81,7 @@ export function Artwork({
       title={title}
       subtitle={subtitle}
       ratio={ratio}
+      texture={texture}
       className={className}
     />
   )
@@ -89,12 +92,19 @@ export function GeneratedArtwork({
   title,
   subtitle,
   ratio = 'square',
+  texture = 'wood',
   className = '',
 }: {
   seed: string
   title: string
   subtitle?: string | undefined
   ratio?: ArtworkRatio
+  /**
+   * V2: stories are a publishing imprint and music is made of wood and air.
+   * Giving them different substrates separates the two catalogs without
+   * changing the palette they share.
+   */
+  texture?: 'wood' | 'paper'
   className?: string
 }) {
   const hash = hashString(seed)
@@ -102,6 +112,7 @@ export function GeneratedArtwork({
   const glowX = 18 + (hash % 5) * 16
   const glowY = 20 + ((hash >> 3) % 4) * 18
   const rotation = ((hash >> 5) % 7) - 3
+  const isPaper = texture === 'paper'
 
   return (
     <div
@@ -121,18 +132,39 @@ export function GeneratedArtwork({
         }}
       />
 
-      {/* Wood-grain striations */}
-      <div
-        className="absolute inset-0 opacity-[0.16]"
-        style={{
-          backgroundImage:
-            'repeating-linear-gradient(94deg, rgba(226,205,164,0.5) 0px, transparent 2px, transparent 9px, rgba(69,47,33,0.7) 11px)',
-          transform: `rotate(${rotation}deg) scale(1.15)`,
-        }}
-      />
+      {/* Substrate: wood grain for recordings, cloth-bound paper for books. */}
+      {isPaper ? (
+        <div
+          className="paper-grain absolute inset-0 opacity-[0.5]"
+          style={{ transform: `rotate(${rotation * 0.2}deg) scale(1.08)` }}
+        />
+      ) : (
+        <div
+          className="absolute inset-0 opacity-[0.16]"
+          style={{
+            backgroundImage:
+              'repeating-linear-gradient(94deg, rgba(226,205,164,0.5) 0px, transparent 2px, transparent 9px, rgba(69,47,33,0.7) 11px)',
+            transform: `rotate(${rotation}deg) scale(1.15)`,
+          }}
+        />
+      )}
+
+      {/* A bound spine down the leading edge of a story cover. */}
+      {isPaper && (
+        <div
+          className="absolute inset-y-0 left-0 w-[7%]"
+          style={{
+            background:
+              'linear-gradient(90deg, rgba(7,6,5,0.85) 0%, rgba(7,6,5,0.28) 55%, transparent 100%)',
+            boxShadow: 'inset -1px 0 0 rgba(226,205,164,0.14)',
+          }}
+        />
+      )}
 
       {/* Brass frame */}
-      <div className="absolute inset-[7%] border border-brass-700/40" />
+      <div
+        className={`absolute border border-brass-700/40 ${isPaper ? 'inset-y-[6%] left-[11%] right-[6%]' : 'inset-[7%]'}`}
+      />
 
       <div className="absolute inset-0 flex flex-col items-center justify-center px-[12%] text-center">
         <p className="font-display text-[clamp(0.95rem,2.4vw,1.5rem)] leading-tight text-ivory-100 drop-shadow-[0_2px_12px_rgba(0,0,0,0.6)]">

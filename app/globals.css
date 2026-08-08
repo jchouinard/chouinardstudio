@@ -1,15 +1,16 @@
 @import 'tailwindcss';
 
 /* ---------------------------------------------------------------------------
-   Chouinard Studios design tokens
+   Chouinard Studios design tokens — Design V2
 
-   Derived from product-kb/BRAND-DIRECTION.md and design-references/README.md:
-   deep warm charcoal, dark walnut, burgundy/oxblood, restrained brass,
-   warm ivory. Change values here and the whole site follows.
+   V2 is an evolution of V1, not a replacement. The V1 palette is preserved
+   exactly; V2 adds the material layer (cognac wood, leather, deeper room
+   shadow) needed to move the site from "dark editorial" toward the physical
+   studio described in product-kb/BRAND-DIRECTION.md.
 --------------------------------------------------------------------------- */
 
 @theme {
-  /* Warm near-black surfaces */
+  /* Warm near-black surfaces — unchanged from V1 */
   --color-ink-950: #070605;
   --color-ink-900: #0c0a09;
   --color-ink-850: #12100e;
@@ -18,38 +19,45 @@
   --color-ink-600: #2a231f;
   --color-ink-500: #3a302a;
 
-  /* Dark walnut hardwood */
+  /* Dark walnut hardwood — unchanged from V1 */
   --color-walnut-900: #241811;
   --color-walnut-800: #322218;
   --color-walnut-700: #452f21;
   --color-walnut-600: #5c3f2c;
   --color-walnut-500: #77543b;
 
-  /* Burgundy / oxblood */
+  /* V2 addition: cognac — the lit face of wood, warmer than walnut */
+  --color-cognac-700: #6b452a;
+  --color-cognac-600: #8a5a35;
+  --color-cognac-500: #a97244;
+
+  /* V2 addition: black leather */
+  --color-leather-900: #14100e;
+  --color-leather-800: #1c1614;
+
+  /* Burgundy / oxblood — unchanged from V1 */
   --color-oxblood-900: #350d16;
   --color-oxblood-800: #4a121f;
   --color-oxblood-700: #5f1727;
   --color-oxblood-600: #7a1e32;
   --color-burgundy-500: #93253c;
-  /* Used for the "Example" badge label. Lightened from #b03a52 (3.36:1) so
-     small uppercase text clears WCAG AA on the darkest surface. */
+  /* Used for representative-content labels. Meets WCAG AA at small sizes. */
   --color-burgundy-400: #cc5e75;
 
-  /* Restrained brass / antique gold */
+  /* Restrained brass / antique gold — unchanged from V1 */
   --color-brass-700: #8a6a35;
   --color-brass-600: #a88243;
   --color-brass-500: #c2a063;
   --color-brass-400: #d4b87f;
   --color-brass-300: #e3d0a4;
 
-  /* Warm ivory */
+  /* Warm ivory — unchanged from V1 */
   --color-ivory-50: #fbf7f0;
   --color-ivory-100: #f3ece1;
   --color-ivory-200: #e4d9c9;
   --color-ivory-300: #c9bca9;
   --color-ivory-400: #a29582;
-  /* Tertiary text (dates, captions, footer). Lightened from #7e7364 (4.09:1
-     on ink-850) to clear WCAG AA at small sizes on every surface used. */
+  /* Tertiary text. Meets WCAG AA at small sizes on every surface used. */
   --color-ivory-500: #8b8071;
 
   --font-display: var(--font-fraunces), 'Iowan Old Style', Georgia, serif;
@@ -61,7 +69,7 @@
 }
 
 /* ---------------------------------------------------------------------------
-   Base
+   Base — unchanged from V1
 --------------------------------------------------------------------------- */
 
 @layer base {
@@ -126,15 +134,9 @@
 }
 
 /* ---------------------------------------------------------------------------
-   Atmosphere — the cinematic layer.
-
-   No studio photography exists yet, so warmth and depth are produced with
-   light, grain and material gradients rather than stock imagery. Every one of
-   these is a background treatment: real photography drops in above them
-   without any of this being reworked.
+   Atmosphere — V1 base retained
 --------------------------------------------------------------------------- */
 
-/* Fine film grain over the whole page. */
 .grain-overlay {
   position: fixed;
   inset: 0;
@@ -144,7 +146,6 @@
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
-/* Intimate pools of warm practical light. */
 .light-pool {
   position: absolute;
   border-radius: 9999px;
@@ -176,7 +177,17 @@
   );
 }
 
-/* Vignette that keeps deep shadows readable. */
+/* V2 addition: a tight, warm practical light — the lamp rather than the wash. */
+.light-pool--practical {
+  background: radial-gradient(
+    circle,
+    color-mix(in oklab, var(--color-brass-300) 34%, transparent) 0%,
+    color-mix(in oklab, var(--color-cognac-600) 18%, transparent) 38%,
+    transparent 72%
+  );
+  filter: blur(46px);
+}
+
 .vignette::after {
   content: '';
   position: absolute;
@@ -189,7 +200,6 @@
   );
 }
 
-/* Dark walnut grain, used sparingly on panels. */
 .walnut-panel {
   background-color: var(--color-walnut-900);
   background-image:
@@ -203,7 +213,6 @@
     linear-gradient(180deg, var(--color-walnut-800) 0%, var(--color-walnut-900) 100%);
 }
 
-/* A single brass hairline that fades at both ends. */
 .hairline {
   height: 1px;
   border: 0;
@@ -217,7 +226,6 @@
   );
 }
 
-/* Rich textile weave — a restrained nod to the Persian-rug influence. */
 .textile {
   background-image:
     repeating-linear-gradient(
@@ -237,6 +245,128 @@
 }
 
 /* ---------------------------------------------------------------------------
+   V2 — Acoustic architecture
+
+   The room, built from CSS rather than photographed. These are the material
+   surfaces that give the site physical presence: slatted wood diffusion,
+   acoustic panelling, a walnut floor receding to a horizon.
+--------------------------------------------------------------------------- */
+
+/* Vertical wooden slat diffuser. Irregular rhythm so it reads as millwork
+   rather than a printed stripe. */
+.slat-wall {
+  background-color: var(--color-walnut-900);
+  background-image: repeating-linear-gradient(
+    90deg,
+    color-mix(in oklab, var(--color-cognac-700) 55%, transparent) 0px,
+    color-mix(in oklab, var(--color-cognac-700) 55%, transparent) 3px,
+    color-mix(in oklab, var(--color-ink-950) 88%, transparent) 4px,
+    color-mix(in oklab, var(--color-ink-950) 88%, transparent) 9px,
+    color-mix(in oklab, var(--color-walnut-700) 60%, transparent) 10px,
+    color-mix(in oklab, var(--color-walnut-700) 60%, transparent) 14px,
+    color-mix(in oklab, var(--color-ink-950) 92%, transparent) 15px,
+    color-mix(in oklab, var(--color-ink-950) 92%, transparent) 21px
+  );
+}
+
+/* Broadband absorber grid — square panels with a soft fabric face. */
+.acoustic-grid {
+  background-color: var(--color-ink-850);
+  background-image:
+    linear-gradient(
+      90deg,
+      color-mix(in oklab, var(--color-ink-950) 70%, transparent) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      color-mix(in oklab, var(--color-ink-950) 70%, transparent) 1px,
+      transparent 1px
+    ),
+    repeating-linear-gradient(
+      45deg,
+      color-mix(in oklab, var(--color-walnut-800) 30%, transparent) 0px,
+      color-mix(in oklab, var(--color-walnut-800) 30%, transparent) 1px,
+      transparent 1px,
+      transparent 4px
+    );
+  background-size:
+    64px 64px,
+    64px 64px,
+    auto;
+}
+
+/* Walnut floor receding to a horizon. Perspective comes from the gradient
+   compression, not a transform, so it costs nothing to composite. */
+.floor-plane {
+  background-image:
+    linear-gradient(
+      180deg,
+      color-mix(in oklab, var(--color-ink-950) 96%, transparent) 0%,
+      color-mix(in oklab, var(--color-walnut-900) 90%, transparent) 22%,
+      color-mix(in oklab, var(--color-walnut-800) 78%, transparent) 60%,
+      color-mix(in oklab, var(--color-walnut-900) 92%, transparent) 100%
+    ),
+    repeating-linear-gradient(
+      90deg,
+      color-mix(in oklab, var(--color-cognac-700) 26%, transparent) 0px,
+      transparent 2px,
+      transparent 26px,
+      color-mix(in oklab, var(--color-walnut-700) 34%, transparent) 28px
+    );
+}
+
+/* Warm reflected bounce along a top or bottom edge. */
+.edge-glow-top {
+  background: linear-gradient(
+    180deg,
+    color-mix(in oklab, var(--color-brass-600) 18%, transparent) 0%,
+    transparent 100%
+  );
+}
+
+/* Deep room shadow for the corners of immersive bands.
+   z-index 1 keeps it above the room surfaces (which sit at auto) and below
+   content, which must be `relative z-10`. Without this it paints over the
+   text, because a ::after is the last child in paint order. */
+.room-shade::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    radial-gradient(
+      ellipse 80% 60% at 50% 100%,
+      transparent 20%,
+      color-mix(in oklab, var(--color-ink-950) 72%, transparent) 100%
+    ),
+    linear-gradient(
+      90deg,
+      color-mix(in oklab, var(--color-ink-950) 85%, transparent) 0%,
+      transparent 18%,
+      transparent 82%,
+      color-mix(in oklab, var(--color-ink-950) 85%, transparent) 100%
+    );
+}
+
+/* Paper stock for story covers — the publishing counterpart to the wood. */
+.paper-grain {
+  background-image:
+    repeating-linear-gradient(
+      0deg,
+      color-mix(in oklab, var(--color-ivory-100) 4%, transparent) 0px,
+      transparent 1px,
+      transparent 3px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      color-mix(in oklab, var(--color-ivory-100) 3%, transparent) 0px,
+      transparent 1px,
+      transparent 4px
+    );
+}
+
+/* ---------------------------------------------------------------------------
    Typography helpers
 --------------------------------------------------------------------------- */
 
@@ -249,10 +379,37 @@
   color: var(--color-brass-400);
 }
 
+/* V2: quieter eyebrow for secondary material. */
+.eyebrow-muted {
+  font-family: var(--font-sans);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--color-ivory-500);
+}
+
+/* V2: technical metadata — durations, dates, indices. */
+.meta {
+  font-family: var(--font-sans);
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-ivory-500);
+  font-variant-numeric: tabular-nums;
+}
+
 .display-xl {
   font-size: clamp(2.75rem, 8.5vw, 6.5rem);
   line-height: 0.98;
   letter-spacing: -0.03em;
+}
+
+/* V2: the hero grew. Larger ceiling for the desktop canvas. */
+.display-hero {
+  font-size: clamp(3rem, 11vw, 9rem);
+  line-height: 0.92;
+  letter-spacing: -0.035em;
 }
 
 .display-lg {
@@ -282,7 +439,7 @@
 }
 
 /* ---------------------------------------------------------------------------
-   Motion — minimal and deliberate, and fully surrendered to reduced-motion.
+   Motion — minimal and deliberate, fully surrendered to reduced-motion.
 --------------------------------------------------------------------------- */
 
 @keyframes breathe {
@@ -294,6 +451,19 @@
   50% {
     transform: scaleY(1);
     opacity: 1;
+  }
+}
+
+/* V2: a slower, deeper swell for the hero anchor waveform. */
+@keyframes swell {
+  0%,
+  100% {
+    transform: scaleY(0.3);
+    opacity: 0.45;
+  }
+  50% {
+    transform: scaleY(1);
+    opacity: 0.95;
   }
 }
 
