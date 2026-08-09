@@ -27,3 +27,6 @@ Thumbs.db
 .vscode/*
 !.vscode/extensions.json
 !.vscode/settings.json
+
+# Supplied concept-image package; the extracted originals are tracked instead
+.team-chouinard/design-references/studio/*.zip
