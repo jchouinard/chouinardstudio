@@ -26,6 +26,50 @@ Large binary review artifacts (screenshots, PDFs) live on archive branches only.
 
 ---
 
+## Design V2 — Customer Zero baseline
+
+**Approved 2026-08-09.** Promoted to `main` as the active public design.
+
+| | |
+|---|---|
+| Tag | `design-v2` |
+| Approved commit | `d3a3eccddb283a20991de7dec2e8586d28729dc2` |
+| Archive branch | `archive/design-v2` |
+| Merge commit on main | `6045c625a90e67f99aded657bc70052f3c096f4c` |
+| Iteration branch | `design/v2` (retained until V3 is established) |
+| Intermediate checkpoint | `design-v2-pass1` (`d5affdc`) |
+
+The promotion instruction named `b849156`. The branch had advanced by one Founder-approved commit — the concept-image recrop — so `d3a3ecc` is the approved and tagged state.
+
+### Major characteristics
+
+- **The waveform system.** Three variants from one deterministic generator: the full-bleed hero anchor with depth echo and floor reflection, per-recording signatures on music rows, and hairline rules in place of dividers.
+- **Physical studio / environment direction.** A material layer (cognac, leather) over the V1 palette, plus procedural acoustic architecture — slatted diffusion, acoustic clouds, walnut floor, warm practical light.
+- **Approved concept imagery integration.** Four public derivatives from the Product Lead's six references, carrying the Studio hero, the acoustic-ceiling section, materials and placement, plus one contained room moment on Home.
+- **Music sonic identity.** Horizontal rows with index, waveform signature and duration — no longer a reskinned story grid.
+- **Stories editorial identity.** Portrait covers on a paper substrate with a bound spine; *"A catalog built to last, not to trend."*
+- **Studio as a signature experience.** Immersive room, materials, six-step signal path, standards, craft notes.
+- **Quieter representative-content treatment.** Header marker plus a full footer statement instead of a global banner; inline "Representative" metadata instead of stamped badges; unconfirmed distribution stated once in prose.
+- **Review environment / version switcher architecture.** Version config in one place, host-based gating, hard-denied on the public production host.
+
+### Status
+
+This is the approved public-experience baseline for **initial AI Support Customer Zero testing**.
+
+It is **not** the final completed Chouinard Studios business site. Content will continue to grow, and Admin / Content Console development follows after initial AI Support testing — see [product-kb/ADMIN-CONSOLE.md](product-kb/ADMIN-CONSOLE.md).
+
+Search indexing remains **disabled** (`site.isPreviewBuild = true`).
+
+### Recovering or comparing V2
+
+```bash
+git checkout design-v2                      # exact approved V2 code
+git checkout archive/design-v2              # preservation branch
+git diff design-v1..design-v2 -- app components
+```
+
+---
+
 ## Design V1
 
 **Frozen 2026-08-07**, before Design V2 iteration begins.

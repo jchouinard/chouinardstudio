@@ -49,6 +49,7 @@ Do not duplicate organization-level Team Chouinard documents here.
 - JOURNEY-SPINE.md — primary customer journeys as they are approved
 - FOUNDER-DECISIONS.md — approved founder decisions for this product
 - ARCHITECTURE.md — product-specific technical architecture
+- ADMIN-CONSOLE.md — approved future Admin / Content Console capability (designed next, not implemented)
 - CROSS-PRODUCT-DEPENDENCIES.md — approved relationships with other products
 
 ## Design References
