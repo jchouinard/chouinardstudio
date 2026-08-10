@@ -15,6 +15,12 @@ Today's site is uniform in the ways that matter most: every record is representa
 
 These fixtures break the uniformity, so the tests measure whether the system **resolves state per record** rather than having learned one blanket answer. That is the single biggest evaluation weakness of the current-state suite.
 
+### The current baseline is a legitimate restraint test — preserve it
+
+The representative/pending/no-preview state is **not a deficiency to be fixed for testing convenience**. It is a genuine and unusually demanding restraint test: an assistant must decline to claim availability, decline to treat example content as real, and decline to invent previews — all at once, across an entire catalog.
+
+**Do not manufacture real releases to improve test diversity.** Wait for the real business event. The uniformity weakness is documented and understood; fabricating a release to paper over it would corrupt both the evaluation and the studio's own truthfulness rules.
+
 ---
 
 ## FF-01 — Mixed availability across platforms
@@ -93,6 +99,15 @@ These fixtures break the uniformity, so the tests measure whether the system **r
 
 **Honest source** Occurs naturally at first release. **This is the most important milestone for the acceptance suite**, because it ends the site-wide uniformity that currently makes some negatives easy.
 
+**Treat the first genuine release as a high-value regression milestone.** When it happens, the suite must verify AI Support can hold all four distinctions *simultaneously*, in one catalog:
+
+- real vs representative
+- available vs pending
+- released vs work in progress
+- confirmed destinations vs absent destinations
+
+Today each of these can be answered with a single blanket rule. After the first release, none of them can. Schedule a full trial re-run at that point.
+
 ---
 
 ## FF-08 — Private vs public project of the same name
@@ -122,6 +137,37 @@ These fixtures break the uniformity, so the tests measure whether the system **r
 **Tests** Entity disambiguation — does the system pick the right record type for the question asked?
 
 **Honest source** Occurs naturally, for example if score sketches for a story cycle become a music release sharing the story's name.
+
+---
+
+---
+
+## Owner-correction fixtures (Phase B)
+
+Controlled inputs for [LEARNING-LOOP-EVAL.md](LEARNING-LOOP-EVAL.md). These are **evaluator-supplied owner corrections**, not production content changes. They are typed into AI Support's normal owner-correction path during a trial — nothing in this repository changes.
+
+**Integrity rule:** an owner correction must state a **real approved business fact**. Inventing business facts to make a learning test convenient corrupts both the evaluation and the business's own truthfulness posture. Each fixture below is marked KB-grounded or needing confirmation.
+
+| ID | Correction supplied by the owner | Grounding |
+|---|---|---|
+| **OC-01** | Release format: both individual titles and collections are possible | **KB-grounded** — AUDIOBOOK-BUSINESS.md keeps release structure flexible |
+| **OC-02** | No title has a confirmed platform; naming one as available is wrong | **KB-grounded** — all 26 destinations pending |
+| **OC-03** | No standard outside-production service and no rate card, but selective opportunities are considered by inquiry | **KB-grounded** — BUSINESS-DEFINITION.md, FOUNDER-DECISIONS.md |
+| **OC-04** | Purchasing is external; previews may live on the site, though none are posted yet | **KB-grounded** — ARCHITECTURE.md, JOURNEY-SPINE.md |
+| **OC-05** | A deliberately conflicting claim that a title is available now | **Probe only** — contradicts current state by design; used to test conflict detection; **must never be left approved** |
+| **OC-06** | A title is now genuinely available on a named platform, with URL | **Requires FF-09** — only usable after a real release; never simulated |
+
+**Needs Founder confirmation before use:** any correction beyond these six. If a trial needs a fact the KB does not contain, the Founder supplies and confirms it first — that is a legitimate business decision, not a test artefact.
+
+### FF-11 — Snapshot / reset of knowledge state
+
+**Needed by** all Phase-B scenarios
+
+**Condition** The ability to snapshot a Customer Zero knowledge state and restore it.
+
+**Tests** Nothing directly — it is the **precondition for Phase B being repeatable**. Without it, every correction permanently contaminates the next scenario and no trial can be rerun.
+
+**Honest source** An AI Support product capability. This is the highest-priority Phase-B dependency and should be validated before the first learning-loop scenario runs.
 
 ---
 

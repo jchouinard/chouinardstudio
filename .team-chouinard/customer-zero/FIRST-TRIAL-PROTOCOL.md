@@ -16,7 +16,15 @@ A standards-respecting crawler **cannot ingest the site as it stands.** Before t
 | **B.** Founder temporarily lifts preview gating for the trial window | Workable, but it publishes representative content to search engines. Weigh against the honesty posture. |
 | **C.** Trial runs against an authorised non-production copy | Clean, but tests a copy rather than the real site. |
 
-**Do not** special-case Chouinard Studios in the crawler. If option A does not exist, building it is a legitimate general product requirement surfaced by Customer Zero — which is precisely what Customer Zero is for. Record the decision in the trial log.
+**Do not** special-case Chouinard Studios in the crawler, and **do not change Chouinard Studios merely to make Customer Zero easier.**
+
+If option A does not exist, building it is a legitimate **general product requirement** surfaced by Customer Zero — which is precisely what Customer Zero is for. Stated as a requirement to carry into AI Support development:
+
+> A verified business owner must have an approved way to authorise AI Support to ingest their own website and knowledge, even where ordinary public crawler or indexing directives would otherwise prevent standard public crawling.
+>
+> It must apply generally to all customers, require appropriate ownership verification, respect access and privacy boundaries, never become a per-customer bypass, and be validated **before** the first Customer Zero ingestion run.
+
+Record the chosen option in the trial log.
 
 ---
 
@@ -148,7 +156,62 @@ The first trial is declared complete when **all** hold:
 
 Condition 6 matters. A pass that cannot be reproduced from clean state is an accident.
 
-## Step 9 — After the trial
+---
+
+# Phase B — learning loop
+
+**Only after the Phase-A baseline is fully recorded.** See [LEARNING-LOOP-EVAL.md](LEARNING-LOOP-EVAL.md).
+
+## Step 9 — Lock the Phase-A baseline
+
+Before any teaching happens:
+
+1. Every current-state test scored and recorded
+2. Pass counts frozen in writing — this is the *initial knowledge accuracy* figure and it can never be measured again for this business
+3. Ingestion run ID and build version recorded
+4. Knowledge state **snapshotted** if the product supports it (see FF-11)
+
+**Do not pre-teach AI Support anything, at any point before this.** A single owner correction entered early makes the Day-0 measurement unrecoverable without a full clean re-ingestion.
+
+## Step 10 — Select genuine gaps
+
+From the Phase-A results, choose **a small number** — three to five for a first trial — of *genuine* failures or gaps. Prefer:
+
+- A real unknown the system correctly declined (best case — tests the loop working as designed)
+- A real incorrect answer it gave confidently
+- An incomplete answer missing a real nuance
+
+Do **not** invent gaps, and do not select a failure you already know is a crawl defect — fix that in Phase A first. Phase B tests the *knowledge* loop, not ingestion.
+
+Add **CZ-LL-04** (false gap) regardless of Phase-A results. It costs nothing and catches the system wasting the owner's time.
+
+## Step 11 — Run the loop
+
+For each selected gap, follow the scenario in the learning-loop document:
+
+baseline → gap capture → owner correction from the [approved fixtures](FUTURE-FIXTURES.md#owner-correction-fixtures-phase-b) → proposed knowledge → owner approval → knowledge refresh → retest → **unseen paraphrases** → regression.
+
+Capture at every step: whether a gap was raised, what was proposed, how much editing the proposal needed, and how many owner actions were required.
+
+**Owner corrections must be real approved business facts.** If a trial needs a fact the Product KB does not contain, the Founder supplies and confirms it first.
+
+## Step 12 — Regression after teaching
+
+After **every** batch of approved corrections, rerun the **entire Phase-A P0 set**. A single P0 regression fails the trial. This is the most commonly skipped step and the one that catches knowledge changes bleeding across records.
+
+## Step 13 — Report the growth curve
+
+```
+Phase A baseline              n / 45
+After the first corrections   n / 45
+After all corrections         n / 45
+```
+
+Plus: gap detection precision, false gap rate, generalisation rate, repeated-gap rate, regression rate, owner interventions per resolved gap.
+
+The **shape** is the finding. A flat curve means corrections are not generalising. A curve that rises then falls means new knowledge is breaking old answers.
+
+## Step 14 — After the trial
 
 - Every passed test becomes a permanent regression test
 - Log which subsystems failed most — that is the real output of Customer Zero

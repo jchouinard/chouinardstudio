@@ -4,9 +4,20 @@
 
 Chouinard Studios is the first real business AI Support will be asked to understand. This directory holds the **acceptance instrument** we use to decide whether it succeeded.
 
-It answers one question:
+It answers two questions:
 
-> Can AI Support independently understand Chouinard Studios accurately, answer useful customer questions, guide people to the right information, distinguish facts from unknowns, and refuse to invent information the business data does not support?
+> **A.** Can AI Support independently understand Chouinard Studios accurately, answer useful customer questions, guide people to the right information, distinguish facts from unknowns, and refuse to invent information the business data does not support?
+>
+> **B.** Once it is running, does it *get better* — turning real customer questions and owner corrections into clean reusable business knowledge, without making the owner do all the work?
+
+Both matter. AI Support is not a chatbot trained once from a website; its promise is a knowledge repository that improves through use. A system that scores well on day one and never improves has failed half the product.
+
+| Phase | Question | Where |
+|---|---|---|
+| **A — Day-0 understanding** | Can it learn the business unaided? | [AI-SUPPORT-TEST-PACK.md](AI-SUPPORT-TEST-PACK.md) — 45 tests |
+| **B — Knowledge growth** | Can it improve from real use? | [LEARNING-LOOP-EVAL.md](LEARNING-LOOP-EVAL.md) — 12 scenarios |
+
+**Phase A always runs first, from a clean state, with no pre-teaching.** Teaching the system anything before the baseline is recorded destroys the initial-learning measurement permanently.
 
 ## The Customer Zero philosophy
 
@@ -99,11 +110,18 @@ Improvements to retrieval must not break grounding. Improvements to freshness mu
 
 | File | |
 |---|---|
-| [AI-SUPPORT-TEST-PACK.md](AI-SUPPORT-TEST-PACK.md) | The tests |
-| [AI-SUPPORT-EVAL-RUBRIC.md](AI-SUPPORT-EVAL-RUBRIC.md) | Scoring, pass criteria, automatic failures |
+| [AI-SUPPORT-TEST-PACK.md](AI-SUPPORT-TEST-PACK.md) | Phase A — the 45 acceptance tests |
+| [LEARNING-LOOP-EVAL.md](LEARNING-LOOP-EVAL.md) | Phase B — 12 learning-loop scenarios, owner-effort measures, growth metrics, the flywheel |
+| [AI-SUPPORT-EVAL-RUBRIC.md](AI-SUPPORT-EVAL-RUBRIC.md) | Scoring, pass criteria, automatic failures, both phases |
 | [FUTURE-FIXTURES.md](FUTURE-FIXTURES.md) | Controlled states some tests need, none built yet |
 | [FIRST-TRIAL-PROTOCOL.md](FIRST-TRIAL-PROTOCOL.md) | Exact procedure for the first real run |
 | [AI-SUPPORT-HANDOFF.md](AI-SUPPORT-HANDOFF.md) | The bridge document to carry into the AI Support repository |
+
+## Existing AI Support modules are hypotheses
+
+AI Support already contains No Match Logs, FAQs, Training Suggestions, Top Questions, Keyword Trends, Session Analytics, Tracked Pages and knowledge-health concepts. **Their existence is not evidence that the loop works.**
+
+Customer Zero treats them as hypotheses to validate: inspect them, run this pack through them, find where the loop breaks, improve what needs improving, and preserve the good existing work. The question is whether they operate as **one coherent learning system** or as isolated dashboard features that never close the loop.
 
 ## Status
 

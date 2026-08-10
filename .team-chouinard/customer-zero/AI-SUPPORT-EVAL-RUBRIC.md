@@ -110,6 +110,71 @@ When this becomes an eval harness:
 - **Never let the harness see gold responses when generating** — only when scoring. A harness that passes prompts and gold answers into the same context is measuring nothing.
 - **Ground truth must be regenerated, not hardcoded.** The ground-truth snapshot in the pack should be produced from live content records at trial time, because the studio's content will change.
 
+---
+
+# Phase B — learning-loop scoring
+
+For [LEARNING-LOOP-EVAL.md](LEARNING-LOOP-EVAL.md). Phase B measures whether the system *improves*, so answer quality alone is not enough — a scenario can produce a correct final answer and still fail.
+
+## Dimensions
+
+Score each 0–2, in addition to the Phase-A dimensions applied to the final answer.
+
+| Dimension | 0 | 1 | 2 |
+|---|---|---|---|
+| **Gap detection** | Fabricated instead of recognising the gap, or raised a gap that did not exist | Recognised something was wrong but mischaracterised it | Correctly identified the gap, or correctly raised none |
+| **Suggestion quality** | Proposal unusable; owner rewrote it | Usable after significant editing | Light or no editing needed |
+| **Generalisation** | Only the original wording works | Some paraphrases work | ≥80% of unseen paraphrases work |
+| **Owner effort** | Owner did the work the system promised to do | More steps than necessary | ≤2 interventions, no repeated facts |
+| **Repository hygiene** | Duplicate, contradictory or over-narrow entry created | Acceptable but untidy | Clean, generally worded, provenance retained |
+| **Conflict / supersession** *(where applicable)* | Contradictory knowledge silently coexists, or history destroyed | Handled but unclear | Conflict surfaced or supersession applied with history retained |
+
+## Scenario pass rule
+
+A Phase-B scenario passes when **all** hold:
+
+1. No Phase-A automatic failure occurred at any point in the scenario
+2. The retested original question passes by Phase-A rules
+3. **Generalisation ≥ 2** for P0 scenarios, ≥ 1 for P1
+4. **Owner effort ≥ 1** — a scenario where the owner did everything by hand does not pass
+5. Gap detection ≥ 1
+6. The scenario's own stated pass criteria are met
+7. The Phase-A P0 regression set still passes 100%
+
+## Phase-B automatic failures
+
+1. **A corrected wrong answer reappears** in any paraphrase — the correction did not take
+2. **Two contradictory approved answers coexist** without the conflict being surfaced
+3. **Owner asked to teach something already answerable** (false gap) on a P0 scenario
+4. **Any Phase-A P0 regression** introduced by new knowledge
+5. **Memorisation** — under 50% paraphrase success after an approved correction
+6. **Superseded knowledge destroyed** rather than retained with history
+
+## Phase-B suite criteria
+
+| | Threshold |
+|---|---|
+| P0 scenarios | **100% pass** |
+| P1 scenarios | ≥ 80% pass |
+| Phase-A P0 regression after all teaching | **100%** |
+| Mean generalisation | ≥ 1.6 |
+| False gap rate | **0** on P0 scenarios |
+| Mean owner effort | ≥ 1.5 |
+
+## Reporting knowledge growth
+
+Report the coverage curve, not a single figure:
+
+```
+Phase A baseline              n / 45 passing
+After 5 approved corrections  n / 45
+After 10                      n / 45
+```
+
+Alongside it: gap detection precision, false gap rate, generalisation rate, repeated-gap rate, regression rate, and owner interventions per resolved gap — as defined in the learning-loop document. **No targets are set in advance.** The first trial produces the baseline these are judged against later.
+
+---
+
 ## Regression discipline
 
 Every test that has ever passed becomes a permanent regression test. Before shipping any change to ingestion, retrieval, ranking, grounding or response generation, the full P0 set must pass again.

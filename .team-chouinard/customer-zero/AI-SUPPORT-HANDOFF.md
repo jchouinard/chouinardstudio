@@ -22,9 +22,13 @@ It is **not** a demo, a fixture, a QA harness or a fake tenant. It is a live bus
 
 ## Why it exists
 
-To answer one question honestly:
+To answer two questions honestly:
 
-> Can AI Support learn a real operating business accurately enough to serve it — through its **normal** product mechanisms, with **no bespoke logic** for that customer?
+> **A.** Can AI Support learn a real operating business accurately enough to serve it — through its **normal** product mechanisms, with **no bespoke logic** for that customer?
+>
+> **B.** Once running, does it **get better** — turning real customer questions and owner corrections into clean reusable knowledge, without making the owner do all the work?
+
+**The return-to-development effort must validate both.** A system that scores well on day one and never improves has delivered half the product. Phase B is not optional follow-up work; it is the half of the promise that distinguishes AI Support from a chatbot trained once on a website.
 
 We control the ground truth, so we can grade the answer rigorously. And the business naturally contains the information states that break support systems: representative content beside real content, editorial state independent of release state, external distribution with nothing purchasable on-site, concept imagery that must not read as documentary, partial credits, rights-sensitive material, and a business model routinely mistaken for a different one.
 
@@ -46,7 +50,36 @@ A test that only passes because the system was told the answer has been destroye
 
 `https://chouinardstudio.com`
 
-**Note before ingesting:** the site currently serves `robots.txt` with `Disallow: /` and `noindex` on every page, because it is preview-gated until real content exists. A standards-respecting crawler cannot ingest it as-is. Resolve this first — see the precondition in [FIRST-TRIAL-PROTOCOL.md](FIRST-TRIAL-PROTOCOL.md). The preferred resolution is a **general** owner-authorised ingestion path available to all customers, not an exception for this one.
+## Two preconditions discovered during test design
+
+These must survive the handoff. Both are findings about the **product**, not about this customer.
+
+### 1. Owner-authorised ingestion — a general product requirement
+
+`chouinardstudio.com` serves `robots.txt` with `Disallow: /` and `noindex` on every page, because launch indexing has not been enabled. A standards-respecting crawler cannot ingest it.
+
+**Do not change Chouinard Studios to make Customer Zero easier.** Instead, treat this as a general capability to build and validate:
+
+> A verified business owner must have an approved way to authorise AI Support to ingest their own website and knowledge, even where ordinary public crawler or indexing directives would otherwise prevent standard public crawling.
+>
+> It must **apply generally to all customers**, require appropriate ownership verification, respect access and privacy boundaries, **never become a Chouinard-specific bypass**, and be **validated before the first Customer Zero ingestion run**.
+
+Not implemented in the Chouinard Studios repository. Customers with staging sites, pre-launch sites and unindexed sites are ordinary; this is a real product gap that Customer Zero surfaced early.
+
+### 2. The representative / pending baseline is a legitimate restraint test
+
+Today every record is representative, every destination is pending, and no previews exist. **Preserve this as a Day-0 test condition.** It is an unusually demanding restraint test — the assistant must decline to claim availability, decline to treat example content as real, and decline to invent previews, across an entire catalog.
+
+**Do not manufacture real releases to improve test diversity.**
+
+When the first genuine release arrives, treat that real business event as a **high-value regression milestone**. The suite must then verify AI Support can hold all four distinctions *simultaneously*, in one catalog:
+
+- real vs representative
+- available vs pending
+- released vs work in progress
+- confirmed destinations vs absent destinations
+
+Today each can be answered with one blanket rule. After the first release, none can — which is exactly when the suite becomes fully meaningful.
 
 ## The public / private boundary
 
@@ -90,19 +123,33 @@ All within the Chouinard Studios repository, `.team-chouinard/customer-zero/`:
 | | |
 |---|---|
 | Philosophy and rules | `README.md` |
-| **Acceptance pack — 45 tests** | `AI-SUPPORT-TEST-PACK.md` |
-| Scoring and pass thresholds | `AI-SUPPORT-EVAL-RUBRIC.md` |
-| Controlled states not yet available | `FUTURE-FIXTURES.md` |
+| **Phase A — acceptance pack, 45 tests** | `AI-SUPPORT-TEST-PACK.md` |
+| **Phase B — learning loop, 12 scenarios** | `LEARNING-LOOP-EVAL.md` |
+| Scoring and pass thresholds, both phases | `AI-SUPPORT-EVAL-RUBRIC.md` |
+| Controlled states and owner-correction fixtures | `FUTURE-FIXTURES.md` |
 | **First-trial procedure** | `FIRST-TRIAL-PROTOCOL.md` |
 
 These are read by **evaluators**, never by the system under test.
 
+## Existing modules are hypotheses, not evidence
+
+AI Support already contains No Match Logs, FAQs, Training Suggestions, Top Questions, Keyword Trends, Session Analytics, Tracked Pages and knowledge-health concepts. **Do not assume the learning loop works because these exist.**
+
+On returning to AI Support, the order is:
+
+1. Inspect them and understand current behaviour
+2. Run Customer Zero through them
+3. Identify where the loop actually breaks
+4. Improve what needs improving — **preserve the good existing work**
+
+The goal is **not** to replace them by default. The question Customer Zero answers is whether they operate as **one coherent learning system** or as isolated dashboard features that never close the loop.
+
 ## Readiness for the first trial
 
-The trial can begin when all hold:
+**Phase A** can begin when all hold:
 
 1. AI Support can ingest a customer site from a **clean state**, reproducibly
-2. The `robots.txt` / `noindex` precondition is resolved by a general mechanism
+2. The owner-authorised ingestion precondition is resolved by a **general** mechanism
 3. Onboarding accepts a business name and URL without customer-specific setup
 4. Ingestion diagnostics are inspectable: pages discovered, fetched, skipped, and what was extracted
 5. A conversational surface exists that a human evaluator can hold real conversations with
@@ -110,9 +157,28 @@ The trial can begin when all hold:
 
 Item 6 is not strictly blocking, but a trial without it produces much weaker findings.
 
+**Phase B** additionally requires:
+
+7. An owner-correction path that a human evaluator can actually use
+8. A visible gap / No Match / suggestion surface
+9. A knowledge refresh that can be triggered and observed
+10. **Snapshot or reset of knowledge state** — without it Phase B is not repeatable, and every scenario contaminates the next
+
+Phase B never runs before the Phase-A baseline is locked. Pre-teaching destroys the initial-learning measurement permanently.
+
 ## What a pass means
 
-AI Support learned a real operating business accurately enough to serve it, through its normal product mechanisms, without any Chouinard-specific logic — and it declined to invent the many things that business has not yet decided.
+**Phase A** — AI Support learned a real operating business accurately enough to serve it, through its normal product mechanisms, without any Chouinard-specific logic, and declined to invent the many things that business has not yet decided.
+
+**Phase B** — real customer questions exposed useful gaps; the owner resolved them in a couple of actions; corrections became clean reusable knowledge; one correction answered many unseen paraphrases; resolved gaps stopped recurring; nothing previously correct broke; and coverage measurably improved.
+
+The flywheel the trial is proving:
+
+```
+OBSERVE → DETECT → SUGGEST → APPROVE → LEARN → VERIFY → OBSERVE
+```
+
+**VERIFY is the stage most products skip.** Improvements get assumed rather than measured, and regressions surface only when a customer finds them. Customer Zero exists to make that stage real.
 
 ## What a first-trial failure means
 
