@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react'
 
 import { site } from '@/content/site'
 import { Wordmark } from '@/components/ui/Wordmark'
+import { PreviewChip } from '@/components/layout/PreviewNotice'
 
 export function SiteHeader() {
   const pathname = usePathname()
@@ -38,6 +39,9 @@ export function SiteHeader() {
 
         <nav aria-label="Primary" className="hidden lg:block">
           <ul className="flex items-center gap-8">
+            <li className="pr-2">
+              <PreviewChip />
+            </li>
             {site.nav.map((item) => (
               <li key={item.href}>
                 <Link
@@ -58,6 +62,10 @@ export function SiteHeader() {
             ))}
           </ul>
         </nav>
+
+        <div className="flex items-center gap-3 lg:hidden">
+          <PreviewChip />
+        </div>
 
         <button
           type="button"

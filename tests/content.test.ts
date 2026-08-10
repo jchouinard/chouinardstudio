@@ -14,6 +14,7 @@ import {
   visible,
 } from '@/content'
 import { destinationSchema, storySchema } from '@/content/schema'
+import { site } from '@/content/site'
 
 describe('content integrity', () => {
   it('loads and validates every record set', () => {
@@ -70,6 +71,15 @@ describe('honesty guarantees', () => {
     // so the UI badges it. This test is expected to change as real work lands.
     const everything = [...stories, ...collections, ...music, ...studioNotes, ...curated]
     expect(everything.every((record) => record.origin === 'example')).toBe(true)
+  })
+
+  it('keeps preview gating on while any representative record exists', () => {
+    // V2 made the disclosure quieter, not optional. While example records are
+    // present the site must stay noindex and preview-gated.
+    const everything = [...stories, ...collections, ...music, ...studioNotes, ...curated]
+    if (everything.some((record) => record.origin === 'example')) {
+      expect(site.isPreviewBuild).toBe(true)
+    }
   })
 
   it('requires curated items to carry their own justification', () => {

@@ -3,7 +3,7 @@ import { Fraunces, Work_Sans } from 'next/font/google'
 
 import { SiteFooter } from '@/components/layout/SiteFooter'
 import { SiteHeader } from '@/components/layout/SiteHeader'
-import { PreviewNotice } from '@/components/layout/PreviewNotice'
+import { VersionSwitcher } from '@/components/review/VersionSwitcher'
 import { site } from '@/content/site'
 
 import './globals.css'
@@ -65,7 +65,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           Skip to content
         </a>
 
-        <PreviewNotice />
+        {/* V2: the preview disclosure moved into the header and footer.
+            See components/layout/PreviewNotice.tsx. */}
         <SiteHeader />
 
         <main id="main">{children}</main>
@@ -73,6 +74,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <SiteFooter />
 
         <div className="grain-overlay" aria-hidden="true" />
+
+        {/* Review infrastructure. Renders nothing on the public production
+            host — see lib/review-env.ts. */}
+        <VersionSwitcher />
       </body>
     </html>
   )

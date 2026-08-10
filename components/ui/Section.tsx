@@ -4,13 +4,16 @@ export function Section({
   children,
   className = '',
   id,
+  /** Vertical rhythm. V2 varies this per section to break V1's even cadence. */
+  py = 'py-20 sm:py-24',
 }: {
   children: React.ReactNode
   className?: string
   id?: string
+  py?: string
 }) {
   return (
-    <section id={id} className={`relative mx-auto max-w-7xl px-6 py-20 sm:py-24 ${className}`}>
+    <section id={id} className={`relative mx-auto max-w-7xl px-6 ${py} ${className}`}>
       {children}
     </section>
   )

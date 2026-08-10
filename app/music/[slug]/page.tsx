@@ -5,9 +5,10 @@ import { notFound } from 'next/navigation'
 import { Artwork } from '@/components/media/Artwork'
 import { Embed } from '@/components/media/Embed'
 import { PreviewPlayer } from '@/components/media/PreviewPlayer'
-import { OriginBadge, StateBadge } from '@/components/ui/Badge'
-import { MusicCard } from '@/components/ui/Cards'
+import { OriginNote, StateBadge } from '@/components/ui/Badge'
+import { MusicRow } from '@/components/ui/Cards'
 import { PlatformChips } from '@/components/ui/PlatformChips'
+import { Waveform } from '@/components/home/Waveform'
 import { Section } from '@/components/ui/Section'
 import { byNewest, getMusic, music, visible } from '@/content'
 import { formatDuration, formatMonth } from '@/lib/format'
@@ -80,20 +81,25 @@ export default async function MusicItemPage({ params }: { params: Promise<Params
               />
 
               <div>
-                <div className="flex flex-wrap items-center gap-2">
-                  <span className="text-[0.68rem] uppercase tracking-[0.16em] text-brass-500">
-                    {kindLabels[item.kind]}
-                  </span>
+                <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
+                  <span className="meta text-brass-500">{kindLabels[item.kind]}</span>
                   <StateBadge state={item.state} />
-                  <OriginBadge origin={item.origin} />
+                  <span className="meta">{formatMonth(item.date)}</span>
+                  {item.durationSeconds && (
+                    <span className="meta">{formatDuration(item.durationSeconds)}</span>
+                  )}
                 </div>
 
                 <h1 className="display-lg mt-6">{item.title}</h1>
 
-                <p className="mt-4 flex flex-wrap items-center gap-4 text-xs uppercase tracking-[0.14em] text-ivory-500">
-                  <span>{formatMonth(item.date)}</span>
-                  {item.durationSeconds && <span>{formatDuration(item.durationSeconds)}</span>}
-                </p>
+                {/* Each recording carries its own waveform signature. */}
+                <div className="mt-7 max-w-xl opacity-70">
+                  <Waveform variant="strip" seed={`music-${item.slug}`} bars={64} />
+                </div>
+
+                <div className="mt-6">
+                  <OriginNote origin={item.origin} kind="recording" />
+                </div>
 
                 <div className="prose-warm mt-8 max-w-2xl text-[1.0625rem]">
                   {item.context.map((paragraph, index) => (
@@ -150,9 +156,9 @@ export default async function MusicItemPage({ params }: { params: Promise<Params
         <section className="border-t border-ink-700 bg-ink-950">
           <div className="mx-auto max-w-7xl px-6 py-20">
             <h2 className="display-md mb-10">More music</h2>
-            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              {more.map((other) => (
-                <MusicCard key={other.slug} item={other} />
+            <div className="border-t border-ink-700">
+              {more.map((other, index) => (
+                <MusicRow key={other.slug} item={other} index={index} />
               ))}
             </div>
           </div>

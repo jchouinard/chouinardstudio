@@ -4,7 +4,7 @@ import { notFound } from 'next/navigation'
 
 import { Artwork } from '@/components/media/Artwork'
 import { PreviewPlayer } from '@/components/media/PreviewPlayer'
-import { OriginBadge, StateBadge } from '@/components/ui/Badge'
+import { OriginNote, StateBadge } from '@/components/ui/Badge'
 import { StoryCard } from '@/components/ui/Cards'
 import { PlatformChips } from '@/components/ui/PlatformChips'
 import { Section } from '@/components/ui/Section'
@@ -72,21 +72,20 @@ export default async function StoryPage({ params }: { params: Promise<Params> })
                 seed={story.slug}
                 title={story.title}
                 subtitle={story.author}
-                ratio="square"
-                sizes="(min-width: 1024px) 22rem, 100vw"
+                ratio="portrait"
+                texture="paper"
+                sizes="(min-width: 1024px) 22rem, 70vw"
                 priority
-                className="border border-ink-700"
+                className="border border-ink-700 shadow-[0_40px_80px_-40px_rgba(0,0,0,1)]"
               />
 
               <div>
-                <div className="flex flex-wrap items-center gap-2">
+                <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
                   <StateBadge state={story.state} />
-                  <OriginBadge origin={story.origin} />
                   {story.runtimeMinutes && (
-                    <span className="text-[0.68rem] uppercase tracking-[0.14em] text-ivory-500">
-                      {formatRuntime(story.runtimeMinutes)}
-                    </span>
+                    <span className="meta">{formatRuntime(story.runtimeMinutes)}</span>
                   )}
+                  {story.sourceNote && <span className="meta">{story.sourceNote}</span>}
                 </div>
 
                 <h1 className="display-lg mt-6">{story.title}</h1>
@@ -96,12 +95,9 @@ export default async function StoryPage({ params }: { params: Promise<Params> })
 
                 <p className="lede mt-7 max-w-2xl">{story.tagline}</p>
 
-                {story.origin === 'example' && (
-                  <p className="mt-6 max-w-2xl border-l-2 border-oxblood-700 bg-ink-850/60 px-5 py-3 text-xs leading-relaxed text-ivory-400">
-                    Representative catalog entry. This is not an actual {site.name} release —
-                    it stands in while the first productions are completed.
-                  </p>
-                )}
+                <div className="mt-6">
+                  <OriginNote origin={story.origin} kind="release" />
+                </div>
 
                 <div className="mt-9 max-w-xl">
                   <PreviewPlayer
@@ -198,14 +194,6 @@ export default async function StoryPage({ params }: { params: Promise<Params> })
                 </div>
               )}
 
-              {story.sourceNote && (
-                <div>
-                  <h2 className="eyebrow">Source</h2>
-                  <p className="mt-4 text-sm leading-relaxed text-ivory-400">
-                    {story.sourceNote}
-                  </p>
-                </div>
-              )}
             </aside>
           </div>
         </Section>

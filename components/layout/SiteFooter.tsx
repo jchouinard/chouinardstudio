@@ -3,6 +3,8 @@ import Link from 'next/link'
 import { site } from '@/content/site'
 import { formatMonth } from '@/lib/format'
 import { latestActivityDate } from '@/lib/activity'
+import { PreviewFootnote } from '@/components/layout/PreviewNotice'
+import { Waveform } from '@/components/home/Waveform'
 
 export function SiteFooter() {
   const latest = latestActivityDate()
@@ -59,17 +61,24 @@ export function SiteFooter() {
           </div>
         </div>
 
-        <hr className="hairline my-12" />
+        {/* The waveform signs off the page as well as opening it. */}
+        <div className="mt-14 opacity-45">
+          <Waveform variant="rule" seed="footer-rule" />
+        </div>
 
-        <div className="flex flex-col gap-3 text-xs text-ivory-500 sm:flex-row sm:items-center sm:justify-between">
-          <p>
-            © {new Date().getFullYear()} {site.name}. All rights reserved.
-          </p>
-          <p className="text-ivory-500">
+        <hr className="hairline mt-6 mb-10" />
+
+        <div className="grid gap-6 md:grid-cols-[1.6fr_1fr]">
+          <PreviewFootnote />
+          <p className="text-xs leading-relaxed text-ivory-500 md:text-right">
             {site.name} is an independent creative business. Purchases and full listening
             happen on external platforms.
           </p>
         </div>
+
+        <p className="mt-8 text-xs text-ivory-500">
+          © {new Date().getFullYear()} {site.name}. All rights reserved.
+        </p>
       </div>
     </footer>
   )

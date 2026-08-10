@@ -1,69 +1,87 @@
 import { ButtonLink } from '@/components/ui/ButtonLink'
 import { Waveform } from '@/components/home/Waveform'
+import { AcousticClouds, FloorPlane, SlatWall } from '@/components/environment/Room'
 import { site } from '@/content/site'
 
 /**
- * BRAND-DIRECTION.md is explicit that the site must not open with a services
- * pitch, and that no tagline is approved yet. So the hero carries the brand
- * through composition — depth, warm light, sound — and the only claim it makes
- * is the approved business descriptor, quoted verbatim from the Product KB.
+ * Homepage hero — Design V2.
+ *
+ * V1 was tasteful but under-committed: type in the upper left, a small
+ * waveform stranded at the bottom, and a lot of unused desktop canvas.
+ *
+ * V2 makes it a room you are standing in. The slatted wall and acoustic
+ * ceiling give the composition architecture, the waveform grows into a
+ * full-bleed anchor the type sits inside rather than above, and the walnut
+ * floor closes the space. Warmth, restraint and the approved copy are
+ * unchanged — still no services pitch and still no unapproved tagline.
  */
 export function Hero() {
   return (
-    <section className="vignette relative isolate overflow-hidden border-b border-ink-700">
-      {/* Layered pools of warm practical light. */}
+    <section className="vignette room-shade relative isolate overflow-hidden border-b border-ink-700">
+      {/* The room. */}
+      <SlatWall intensity="subtle" />
+      <AcousticClouds />
+
+      {/* Warm practical light, pooled rather than washed. */}
       <div
-        className="light-pool light-pool--brass h-[34rem] w-[34rem]"
-        style={{ left: '52%', top: '-16rem' }}
+        className="light-pool light-pool--practical h-[26rem] w-[26rem]"
+        style={{ left: '58%', top: '-6rem' }}
         aria-hidden="true"
       />
       <div
-        className="light-pool light-pool--oxblood h-[28rem] w-[28rem]"
-        style={{ left: '-8rem', top: '4rem' }}
+        className="light-pool light-pool--oxblood h-[30rem] w-[30rem] opacity-80"
+        style={{ left: '-10rem', top: '2rem' }}
         aria-hidden="true"
       />
       <div
-        className="light-pool light-pool--walnut h-[24rem] w-[40rem] opacity-70"
-        style={{ right: '-10rem', bottom: '-12rem' }}
+        className="light-pool light-pool--brass h-[22rem] w-[38rem] opacity-50"
+        style={{ right: '-12rem', bottom: '2rem' }}
         aria-hidden="true"
       />
 
-      {/* Faint textile weave, well below the type. */}
-      <div className="textile absolute inset-0 opacity-[0.35]" aria-hidden="true" />
-
-      <div className="relative mx-auto flex min-h-[clamp(34rem,82vh,52rem)] max-w-7xl flex-col justify-center px-6 pb-16 pt-20 sm:pb-24 sm:pt-28">
-        <div className="animate-rise max-w-4xl">
+      <div className="relative mx-auto flex min-h-[clamp(36rem,88vh,58rem)] max-w-7xl flex-col justify-end px-6 pb-0 pt-28 sm:pt-32">
+        <div className="animate-rise relative z-10 max-w-4xl">
           <p className="eyebrow">Independent creative studio</p>
 
           {/*
-            No tagline is approved yet, so the H1 is the brand itself and every
+            No tagline is approved, so the H1 remains the brand itself and every
             supporting line is quoted from the Product KB. Final positioning
             copy belongs to the Product Lead.
           */}
-          <h1 className="display-xl mt-7">
+          <h1 className="display-hero mt-7">
             <span className="block">Chouinard</span>
             <span className="block text-brass-300">Studios</span>
           </h1>
 
-          <p className="lede mt-9 max-w-2xl">{site.descriptor}</p>
+          <div className="mt-9 grid gap-8 sm:grid-cols-[minmax(0,32rem)_auto] sm:items-end">
+            <div>
+              <p className="lede max-w-xl">{site.descriptor}</p>
+              <p className="mt-4 max-w-lg text-sm leading-relaxed text-ivory-400">
+                We create, produce, publish and develop our own work — original music, and a
+                curated catalog of audiobooks and storytelling.
+              </p>
+            </div>
 
-          <p className="mt-5 max-w-xl text-sm leading-relaxed text-ivory-400">
-            We create, produce, publish and develop our own work — original music, and a
-            curated catalog of audiobooks and storytelling.
-          </p>
-
-          <div className="mt-11 flex flex-wrap gap-4">
-            <ButtonLink href="/stories">Browse the stories</ButtonLink>
-            <ButtonLink href="/music" variant="ghost">
-              Hear the music
-            </ButtonLink>
+            <div className="flex flex-wrap gap-4 sm:justify-end">
+              <ButtonLink href="/music">Hear the music</ButtonLink>
+              <ButtonLink href="/stories" variant="ghost">
+                Browse the stories
+              </ButtonLink>
+            </div>
           </div>
+        </div>
+
+        {/*
+          The signature waveform, now a full-bleed anchor the composition rests
+          on rather than a motif parked at the edge. It is markedly more
+          compelling in motion than in a still capture.
+        */}
+        <div className="relative z-10 -mx-6 mt-12 sm:mt-16">
+          <Waveform variant="anchor" seed="chouinard-hero" />
         </div>
       </div>
 
-      <div className="relative -mb-px opacity-80">
-        <Waveform />
-      </div>
+      <FloorPlane height="h-32" />
     </section>
   )
 }

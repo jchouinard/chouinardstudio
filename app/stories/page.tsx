@@ -30,7 +30,7 @@ export default function StoriesPage() {
           </p>
         </div>
 
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-6 lg:grid-cols-2">
           {groupings.map((collection) => (
             <CollectionCard
               key={collection.slug}
@@ -56,9 +56,9 @@ export default function StoriesPage() {
             </p>
           </div>
 
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {catalog.map((story) => (
-              <StoryCard key={story.slug} story={story} />
+          <div className="grid grid-cols-2 gap-6 sm:gap-8 lg:grid-cols-4">
+            {catalog.map((story, index) => (
+              <StoryCard key={story.slug} story={story} priority={index < 4} />
             ))}
           </div>
         </div>
