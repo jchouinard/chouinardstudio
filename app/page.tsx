@@ -8,6 +8,8 @@ import { ButtonLink } from '@/components/ui/ButtonLink'
 import { CollectionCard, CuratedRow, MusicRow, NoteCard, StoryCard } from '@/components/ui/Cards'
 import { Section, SectionHeading } from '@/components/ui/Section'
 import { Artwork } from '@/components/media/Artwork'
+import { ConceptNote, StudioImage } from '@/components/media/StudioImage'
+import { studioImages } from '@/content/studio-imagery'
 import { OriginBadge, StateBadge } from '@/components/ui/Badge'
 import {
   byFeature,
@@ -108,9 +110,14 @@ export default function HomePage() {
           <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-end">
             <div className="max-w-2xl">
               <p className="eyebrow">Music — the flagship</p>
+              {/*
+                Pass 1 read "Everything here is made in the same room" — a
+                literal operational claim the business should not be locked
+                into as it grows. Same standard, same hands, same world.
+              */}
               <h2 className="display-lg mt-5">
-                Everything here is made
-                <span className="block text-brass-300">in the same room.</span>
+                Made by the same hands,
+                <span className="block text-brass-300">to the same standard.</span>
               </h2>
               <p className="lede mt-6">
                 Original music is the creative heart of the studio. Finished pieces,
@@ -125,10 +132,22 @@ export default function HomePage() {
             </Link>
           </div>
 
-          <div className="mt-14 border-t border-ink-700">
-            {latestMusic.map((item, index) => (
-              <MusicRow key={item.slug} item={item} index={index} />
-            ))}
+          <div className="mt-14 grid gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,17rem)] lg:gap-16">
+            <div className="border-t border-ink-700">
+              {latestMusic.map((item, index) => (
+                <MusicRow key={item.slug} item={item} index={index} />
+              ))}
+            </div>
+
+            {/* An instrument in context, tying the flagship medium to the room. */}
+            <figure className="relative hidden overflow-hidden border border-ink-700 lg:block">
+              <StudioImage
+                asset={studioImages.ampDetail}
+                sizes="17rem"
+                className="block h-full"
+                imgClassName="h-full w-full object-cover"
+              />
+            </figure>
           </div>
         </div>
 
@@ -224,7 +243,18 @@ export default function HomePage() {
           aria-hidden="true"
         />
 
-        <div className="relative z-10 mx-auto max-w-7xl px-6 py-20 sm:py-36">
+        {/* The physical anchor: one controlled full-bleed room moment, with no
+            type laid over it. */}
+        <figure className="relative z-10 border-b border-ink-700">
+          <StudioImage
+            asset={studioImages.roomCeiling}
+            sizes="100vw"
+            className="block"
+            imgClassName="h-[16rem] w-full object-cover sm:h-[22rem] lg:h-[26rem]"
+          />
+        </figure>
+
+        <div className="relative z-10 mx-auto max-w-7xl px-6 py-16 sm:py-28">
           <div className="grid gap-14 lg:grid-cols-[minmax(0,1fr)_minmax(0,26rem)] lg:gap-20">
             <div>
               <p className="eyebrow">The room</p>
@@ -235,11 +265,7 @@ export default function HomePage() {
                 Walnut, brass, oxblood textile and black leather. Acoustic treatment built in
                 as architecture rather than bolted on afterwards.
               </p>
-              <p className="mt-5 max-w-lg text-sm leading-relaxed text-ivory-500">
-                The physical studio is being built toward this. These are the materials and the
-                intent — photography of the finished room will replace them as the space
-                develops.
-              </p>
+              <ConceptNote className="mt-6" />
 
               <MaterialStrip className="mt-10 max-w-lg" />
 

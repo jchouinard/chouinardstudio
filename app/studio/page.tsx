@@ -2,16 +2,12 @@ import type { Metadata } from 'next'
 
 import { NoteCard } from '@/components/ui/Cards'
 import { Waveform } from '@/components/home/Waveform'
-import {
-  AcousticClouds,
-  FloorPlane,
-  MaterialStrip,
-  RoomBackdrop,
-  SlatWall,
-} from '@/components/environment/Room'
+import { AcousticClouds, FloorPlane, MaterialStrip, SlatWall } from '@/components/environment/Room'
+import { ConceptNote, ImageScrim, StudioImage } from '@/components/media/StudioImage'
 import { ButtonLink } from '@/components/ui/ButtonLink'
 import { Section } from '@/components/ui/Section'
 import { byFeature, studioNotes, visible } from '@/content'
+import { studioImages } from '@/content/studio-imagery'
 
 export const metadata: Metadata = {
   title: 'Studio',
@@ -20,17 +16,17 @@ export const metadata: Metadata = {
 }
 
 /**
- * The Studio page — Design V2.
+ * The Studio page — Design V2, Pass 2.
  *
- * The largest refinement target. V1 was a credible text page; V2 makes it a
- * signature brand experience: an immersive room, the materials it is built
- * from, the signal path a recording travels, the standards that govern it, and
- * the craft notes.
+ * Pass 1 built the room procedurally because no imagery existed. Pass 2 anchors
+ * it in the approved concept renders: the live room opens the page, the
+ * acoustic ceiling carries the section on why the room is treated the way it
+ * is, and two details ground the material and placement copy.
  *
- * Honesty constraint from BRAND-DIRECTION.md: the physical studio is being
- * built toward this and concept imagery must never imply a finished room. So
- * the environment is drawn from materials rather than photographed, and the
- * page says plainly what exists and what is intent.
+ * Truthfulness: this is the environment being built toward, not a finished
+ * space. The page says so once, near the top, confidently — rather than
+ * repeating a disclaimer under every image. The procedural surfaces from Pass 1
+ * are kept beneath and between the photography so the two read as one world.
  */
 
 const standards = [
@@ -48,7 +44,7 @@ const standards = [
   },
   {
     title: 'Build toward one world',
-    body: 'Music and storytelling are made in the same room, to the same standard, by the same people. That is what makes them recognisable as coming from one place.',
+    body: 'Music and storytelling are held to the same standards, shaped by the same people and the same ears. That is what makes them recognisable as coming from one place.',
   },
 ]
 
@@ -68,97 +64,184 @@ export default function StudioPage() {
   return (
     <>
       {/* ---- Immersive room hero ------------------------------------------ */}
-      <header className="room-shade relative isolate overflow-hidden border-b border-ink-700">
-        <RoomBackdrop />
+      <header className="relative isolate overflow-hidden border-b border-ink-700">
+        <div className="absolute inset-0">
+          <StudioImage
+            asset={studioImages.roomPiano}
+            sizes="100vw"
+            priority
+            className="block h-full w-full"
+            imgClassName="h-full w-full object-cover object-center"
+          />
+          <ImageScrim variant="bottom" />
+          {/*
+            Text-side scrim, and it is load-bearing. Measured against the
+            actual pixels behind the glyphs: with it the desktop headline sits
+            at 8.07:1, without it 2.05:1 — below the 3:1 floor for large text,
+            because the render's practical lights fall right where the type
+            does. Do not remove it without re-measuring.
+          */}
+          <ImageScrim variant="left" />
+          {/* Keeps the procedural warmth of Pass 1 alive over the render. */}
+          <div
+            className="light-pool light-pool--practical h-80 w-80 opacity-70"
+            style={{ left: '12%', top: '6%' }}
+            aria-hidden="true"
+          />
+        </div>
 
-        <div className="relative z-10 mx-auto flex min-h-[clamp(28rem,72vh,44rem)] max-w-7xl flex-col justify-end px-6 pb-16 pt-28 sm:pb-24">
+        <div className="relative z-10 mx-auto flex min-h-[clamp(30rem,80vh,48rem)] max-w-7xl flex-col justify-end px-6 pb-16 pt-32 sm:pb-24">
           <div className="max-w-3xl">
             <p className="eyebrow">Inside the studio</p>
+            {/*
+              Pass 1 read "The room makes the record." — true of the atmosphere,
+              but it credits the building for the work. The room shapes what is
+              possible; people make the record.
+            */}
             <h1 className="display-hero mt-6">
-              The room
-              <span className="block text-brass-300">makes the record.</span>
+              The room shapes
+              <span className="block text-brass-300">the record.</span>
             </h1>
             <p className="lede mt-8 max-w-2xl">
-              Chouinard Studios is a working room, not a facility for rent. What follows is
-              how the work gets made and why the choices matter.
+              It does not make it. People, performance and production do that — but everything
+              they do carries the character of the space it happened in.
             </p>
+            <ConceptNote className="mt-8" />
           </div>
 
-          <div className="mt-14 max-w-3xl opacity-70">
+          <div className="mt-12 max-w-3xl opacity-70">
             <Waveform variant="rule" seed="studio-hero" bars={90} />
           </div>
         </div>
       </header>
 
-      {/* ---- Materials ----------------------------------------------------- */}
+      {/* ---- Building the room --------------------------------------------- */}
       <Section py="py-16 sm:py-24">
-        <div className="grid gap-14 lg:grid-cols-[minmax(0,1fr)_minmax(0,28rem)] lg:gap-20">
+        <div className="grid gap-12 lg:grid-cols-[minmax(0,26rem)_minmax(0,1fr)] lg:gap-16">
           <div>
-            <p className="eyebrow">Materials</p>
-            <h2 className="display-md mt-5 max-w-xl">
-              Warm walnut, brass, oxblood and leather — chosen to be lived in.
-            </h2>
-            <p className="lede mt-6 max-w-xl">
-              A room you want to spend nine hours in produces better work than a room you
-              tolerate. The materials are part of the acoustic design, not decoration applied
-              over it.
+            <p className="eyebrow">Building the room</p>
+            <h2 className="display-md mt-5">Treatment before millwork</h2>
+            <p className="lede mt-6">
+              The ceiling is the largest untreated surface in most rooms, and the first place a
+              recording goes wrong.
             </p>
-            <MaterialStrip className="mt-10 max-w-2xl" />
+            <p className="mt-5 text-sm leading-relaxed text-ivory-400">
+              Absorption above the performer, diffusion behind, and timber that hides the
+              engineering without softening it. A room designed this way stays even as you move
+              through it, which is what lets a microphone go where the sound is rather than
+              where the room allows.
+            </p>
           </div>
 
-          <aside className="space-y-6 border-l border-ink-700 pl-8">
-            <p className="eyebrow-muted">What exists today</p>
-            <p className="text-sm leading-relaxed text-ivory-400">
-              The narration booth is finished. The tracking room is under construction —
-              treatment first, then millwork.
-            </p>
-            <p className="text-sm leading-relaxed text-ivory-500">
-              The surfaces shown across this site are the approved material direction, drawn
-              rather than photographed. They represent the environment being built toward.
-              They are not photographs of a completed space, and nothing here should be read
-              as documentation of finished facilities.
-            </p>
-          </aside>
+          <figure className="relative overflow-hidden border border-ink-700">
+            <StudioImage
+              asset={studioImages.roomCeiling}
+              sizes="(min-width: 1024px) 62vw, 100vw"
+              className="block"
+              imgClassName="w-full"
+            />
+          </figure>
         </div>
       </Section>
 
-      {/* ---- Signal path --------------------------------------------------- */}
+      {/* ---- Materials ----------------------------------------------------- */}
       <section className="relative overflow-hidden border-y border-ink-700 bg-ink-950">
         <SlatWall intensity="subtle" />
-        <div
-          className="light-pool light-pool--practical h-72 w-72"
-          style={{ left: '12%', top: '-4rem' }}
-          aria-hidden="true"
-        />
 
         <div className="relative z-10 mx-auto max-w-7xl px-6 py-16 sm:py-24">
-          <div className="max-w-2xl">
-            <p className="eyebrow">Signal path</p>
-            <h2 className="display-md mt-5">What a performance travels through</h2>
-            <p className="lede mt-6">
-              Six decisions, in order. Each one constrains everything after it.
-            </p>
-          </div>
+          <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,22rem)] lg:gap-20">
+            <div>
+              <p className="eyebrow">Materials</p>
+              <h2 className="display-md mt-5 max-w-xl">
+                Warm walnut, brass, oxblood and leather — chosen to be lived in.
+              </h2>
+              <p className="lede mt-6 max-w-xl">
+                A room you want to spend nine hours in produces better work than a room you
+                tolerate. The materials are part of the acoustic design, not decoration applied
+                over it.
+              </p>
+              <p className="mt-5 max-w-xl text-sm leading-relaxed text-ivory-500">
+                Soft furnishings and rugs are not styling. They are the difference between a
+                lively room and a harsh one.
+              </p>
 
-          <ol className="mt-14 grid gap-px bg-ink-700 sm:grid-cols-2 lg:grid-cols-3">
-            {signalPath.map((stage, index) => (
-              <li key={stage.step} className="bg-ink-950 p-7">
-                <span className="meta text-brass-500">
-                  {String(index + 1).padStart(2, '0')}
-                </span>
-                <h3 className="mt-4 font-display text-2xl text-ivory-100">{stage.step}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-ivory-400">{stage.body}</p>
-              </li>
-            ))}
-          </ol>
+              <MaterialStrip className="mt-10 max-w-2xl" />
+            </div>
+
+            <figure className="relative overflow-hidden border border-ink-700">
+              <StudioImage
+                asset={studioImages.cornerDetail}
+                sizes="(min-width: 1024px) 22rem, 90vw"
+                className="block"
+                imgClassName="w-full"
+              />
+            </figure>
+          </div>
         </div>
 
         <FloorPlane height="h-20" />
       </section>
 
+      {/* ---- Signal path — deliberately image-free, informational ---------- */}
+      <Section py="py-16 sm:py-24">
+        <div className="max-w-2xl">
+          <p className="eyebrow">Signal path</p>
+          <h2 className="display-md mt-5">What a performance travels through</h2>
+          <p className="lede mt-6">
+            Six decisions, in order. Each one constrains everything after it.
+          </p>
+        </div>
+
+        {/*
+          Mobile pacing: a single column of generously spaced steps scans far
+          better than a cramped grid, so the grid only engages from sm upward.
+        */}
+        <ol className="mt-12 grid gap-px bg-ink-700 sm:mt-14 sm:grid-cols-2 lg:grid-cols-3">
+          {signalPath.map((stage, index) => (
+            <li key={stage.step} className="bg-ink-900 p-6 sm:p-7">
+              <span className="meta text-brass-500">{String(index + 1).padStart(2, '0')}</span>
+              <h3 className="mt-3 font-display text-2xl text-ivory-100">{stage.step}</h3>
+              <p className="mt-2.5 text-sm leading-relaxed text-ivory-400">{stage.body}</p>
+            </li>
+          ))}
+        </ol>
+      </Section>
+
+      {/* ---- Placement, grounded in a detail -------------------------------- */}
+      <section className="relative overflow-hidden border-y border-ink-700 bg-ink-950">
+        <div className="relative z-10 mx-auto max-w-7xl px-6 py-16 sm:py-24">
+          <div className="grid items-center gap-12 lg:grid-cols-[minmax(0,20rem)_minmax(0,1fr)] lg:gap-20">
+            <figure className="relative overflow-hidden border border-ink-700">
+              <StudioImage
+                asset={studioImages.ampDetail}
+                sizes="(min-width: 1024px) 20rem, 85vw"
+                className="block"
+                imgClassName="w-full"
+              />
+            </figure>
+
+            <div>
+              <p className="eyebrow">Placement</p>
+              <h2 className="display-md mt-5 max-w-xl">
+                One microphone, moved four inches, is a different record.
+              </h2>
+              <p className="lede mt-6 max-w-xl">
+                Most of what people hear as tone is a decision about distance and angle, made
+                before anything is recorded.
+              </p>
+              <p className="mt-5 max-w-xl text-sm leading-relaxed text-ivory-400">
+                Close to the grille for the speaker&rsquo;s character, further back for the room
+                to enter the sound. Neither is correct on its own — the piece decides, and it
+                is worth the twenty minutes it takes to find out.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* ---- Standards ----------------------------------------------------- */}
       <Section py="py-16 sm:py-24">
-        <div className="grid gap-14 lg:grid-cols-[22rem_minmax(0,1fr)] lg:gap-20">
+        <div className="grid gap-12 lg:grid-cols-[22rem_minmax(0,1fr)] lg:gap-20">
           <div>
             <p className="eyebrow">Standards</p>
             <h2 className="display-md mt-5">How we work</h2>
@@ -167,7 +250,7 @@ export default function StudioPage() {
             </p>
           </div>
 
-          <dl className="space-y-10">
+          <dl className="space-y-9">
             {standards.map((principle) => (
               <div key={principle.title} className="border-t border-ink-600 pt-6">
                 <dt className="font-display text-2xl text-ivory-100">{principle.title}</dt>
@@ -190,7 +273,7 @@ export default function StudioPage() {
         />
 
         <div className="relative z-10 mx-auto max-w-7xl px-6 py-16 sm:py-24">
-          <div className="mb-14 max-w-2xl">
+          <div className="mb-12 max-w-2xl">
             <p className="eyebrow">Studio notes</p>
             <h2 className="display-md mt-5">The decisions nobody hears</h2>
             <p className="lede mt-6">
@@ -205,7 +288,7 @@ export default function StudioPage() {
             ))}
           </div>
 
-          <div className="mt-20 border-t border-ink-700 pt-12">
+          <div className="mt-16 border-t border-ink-700 pt-12">
             <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
               <p className="max-w-xl font-display text-2xl leading-snug text-ivory-100">
                 Hear what the room does.

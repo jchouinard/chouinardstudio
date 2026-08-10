@@ -267,6 +267,33 @@ async function capture(
     // Fonts and webfont metrics must settle or screenshots differ between runs.
     await page.evaluate(() => document.fonts.ready)
 
+    /*
+     * Lazy imagery will not have loaded at `load`, and a full-page screenshot
+     * does not reliably trigger it — which silently produced black boxes where
+     * the studio photography should be. Scroll the whole page to trigger every
+     * loader, promote them to eager, then wait for each one to finish.
+     */
+    await page.evaluate(async () => {
+      const step = Math.max(200, window.innerHeight)
+      for (let y = 0; y < document.body.scrollHeight; y += step) window.scrollTo(0, y)
+      window.scrollTo(0, 0)
+
+      const images = Array.from(document.images)
+      for (const image of images) image.loading = 'eager'
+
+      await Promise.all(
+        images.map((image) =>
+          image.complete && image.naturalWidth > 0
+            ? Promise.resolve()
+            : new Promise((resolve) => {
+                image.addEventListener('load', () => resolve(null), { once: true })
+                image.addEventListener('error', () => resolve(null), { once: true })
+                setTimeout(() => resolve(null), 10_000)
+              }),
+        ),
+      )
+    })
+
     const rendered = await page.evaluate(() => {
       const main = document.querySelector('main')
       const h1 = document.querySelector('h1')
@@ -277,6 +304,17 @@ async function capture(
         bodyHeight: document.body.scrollHeight,
       }
     })
+
+    // An image that renders as a blank box is a visual failure the reviewer
+    // would otherwise have to spot by eye.
+    const blankImages = await page.evaluate(() =>
+      Array.from(document.images)
+        .filter((image) => image.naturalWidth === 0)
+        .map((image) => image.getAttribute('src') ?? '(no src)'),
+    )
+    if (blankImages.length > 0) {
+      problems.push(`image did not render: ${blankImages[0]}`)
+    }
 
     if (!rendered.hasMain) problems.push('no <main> element')
     if (!rendered.hasHeading) problems.push('no <h1>')
