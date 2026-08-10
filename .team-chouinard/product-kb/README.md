@@ -50,6 +50,8 @@ Do not duplicate organization-level Team Chouinard documents here.
 - FOUNDER-DECISIONS.md — approved founder decisions for this product
 - ARCHITECTURE.md — product-specific technical architecture
 - ADMIN-CONSOLE.md — approved future Admin / Content Console capability (designed next, not implemented)
+- ADMIN-V1-PRODUCT-SPEC.md — Admin V1 Studio Console product specification (awaiting approval, not implemented)
+- ADMIN-V1-EXPERIENCE-MAP.md — Admin V1 primary user journeys (awaiting approval, not implemented)
 - CROSS-PRODUCT-DEPENDENCIES.md — approved relationships with other products
 
 ## Design References

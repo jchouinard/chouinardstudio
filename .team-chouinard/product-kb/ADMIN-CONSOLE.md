@@ -4,7 +4,14 @@
 
 **Approved future capability — designed next, not implemented.**
 
-Only the deployment seam exists today: a minimal, non-sensitive placeholder on the `admin/base` branch, intended for `admin.chouinardstudio.com`. No authentication, database, CMS, API or write capability has been built, and none should be added before the Product Lead designs the Admin experience.
+Only the deployment seam exists today: a minimal, non-sensitive placeholder on the `admin/base` branch, intended for `admin.chouinardstudio.com`. No authentication, database, CMS, API or write capability has been built.
+
+The Admin V1 experience is now specified and awaiting Founder / Product Lead approval:
+
+- [ADMIN-V1-PRODUCT-SPEC.md](ADMIN-V1-PRODUCT-SPEC.md) — operating model, information architecture, workflows, content states, data models, V1 vs future scope
+- [ADMIN-V1-EXPERIENCE-MAP.md](ADMIN-V1-EXPERIENCE-MAP.md) — the primary user journeys
+
+This document remains the record of the deployment seam and the standing principles. The specification supersedes its "anticipated workflows" section as the planning reference.
 
 ## Purpose
 
