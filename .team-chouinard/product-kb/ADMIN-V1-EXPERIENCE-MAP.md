@@ -2,7 +2,9 @@
 
 ## Status
 
-**Product specification for approval. Not implemented.**
+**Founder + Product Lead approved as the Admin V1 product baseline**, after two corrections: Journey 5 now routes through Review rather than a Distribution destination, and Journey 6 now requires an explicit confirmation and an audit entry before a live public asset changes.
+
+**Not implemented.**
 
 Companion to [ADMIN-V1-PRODUCT-SPEC.md](ADMIN-V1-PRODUCT-SPEC.md). These are the journeys the console has to make easy; if any of them feels like administration, the design is wrong.
 
@@ -109,7 +111,7 @@ Notation: **[H]** a human action · **[S]** the system acting · **[A]** an AI p
 
 1. **[S]** *(future automation)* A check finds *The Secret Garden* listed on a retailer while the record says **pending**
 2. **[S]** Opens a **review task**. Nothing published changes.
-3. **[H]** Studio → Distribution → *"Release is live but the site says pending"*
+3. **[H]** Studio → the **Distribution** block → **Review → Distribution issues** → *"Release is live but the site says pending"*
 4. **[H]** Opens the task, follows the link, confirms it is the right edition
 5. **[H]** Sets the destination to **available**, pastes the URL, saves
 6. **[S]** Records `verifiedBy: human`, stamps `lastVerified`
@@ -118,15 +120,20 @@ Notation: **[H]** a human action · **[S]** the system acting · **[A]** an AI p
 
 **Manual path, V1:** without automation, step 1 is Jen or Andrew noticing. Steps 3–7 are identical. The automation is a FUTURE accelerant on a workflow that already works by hand.
 
+**Navigation note:** there is no Distribution destination in V1. The dashboard surfaces distribution problems, and the work happens in **Review**, filtered to distribution issues — per the information architecture in the specification.
+
 ---
 
 ## 6. Andrew replaces placeholder artwork
 
 1. **[H]** Music → *Walnut Room* → Artwork → **Upload**
 2. **[H]** Selects a file; writes alt text (required for anything public)
-3. **[S]** Generates optimised public derivatives and retains the source privately
-4. **[S]** The generated cover is superseded everywhere the record appears
-5. **[H]** No publish step needed — replacing an asset on a published record is not a state change
+3. **[S]** Generates optimised public derivatives, retains the source privately, and shows the current and proposed artwork side by side
+4. **[H]** **Replace public artwork** — one explicit confirmation before anything live changes
+5. **[S]** Records a provenance entry: who replaced it, when, and which asset it superseded
+6. **[S]** The generated cover is superseded everywhere the record appears
+
+**Not a publish, but not silent either.** Replacing an asset on an already-published record does **not** go through the editorial publish workflow — no state change, no review queue. It does require one deliberate confirmation, because it changes what the public sees, and it leaves an audit entry. One click, not a ceremony.
 
 ---
 

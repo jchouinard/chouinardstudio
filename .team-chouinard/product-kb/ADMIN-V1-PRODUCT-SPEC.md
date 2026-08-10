@@ -2,9 +2,9 @@
 
 ## Status
 
-**Product specification for approval. Not implemented.**
+**Founder + Product Lead approved as the Admin V1 product baseline**, after two corrections: the distribution journey now routes through Review rather than a Distribution destination, and replacing a live public asset now requires an explicit confirmation and an audit entry.
 
-No database, CMS, authentication provider, AI API, file storage, distribution API, write endpoint or paid service exists or is chosen here. See [ADMIN-CONSOLE.md](ADMIN-CONSOLE.md) for the current deployment seam, and [ADMIN-V1-EXPERIENCE-MAP.md](ADMIN-V1-EXPERIENCE-MAP.md) for the journeys this specification implies.
+**Not implemented.** No database, CMS, authentication provider, AI API, file storage, distribution API, write endpoint or paid service exists or is chosen here. See [ADMIN-CONSOLE.md](ADMIN-CONSOLE.md) for the current deployment seam, and [ADMIN-V1-EXPERIENCE-MAP.md](ADMIN-V1-EXPERIENCE-MAP.md) for the journeys this specification implies.
 
 ---
 
@@ -316,6 +316,8 @@ Storage infrastructure is **not chosen here** (§18). The conceptual split is th
 The public content record must have **no field capable of holding a master reference**. Preventing exposure is a property of the schema, not a habit of the operator. Masters live in a separate namespace that the public projection cannot address.
 
 Derivatives are generated from sources; the source is retained, the derivative is what ships. Replacing artwork produces a new derivative rather than mutating a published one.
+
+**Replacing a live public asset.** This does not go through the editorial publish workflow — there is no state change and no review queue. It does require **one explicit Apply / Replace confirmation** before the live asset changes, and it writes a provenance entry recording who replaced it, when, and which asset was superseded. All derived public surfaces then update automatically. The intent is a single deliberate click, not a publishing ceremony.
 
 ### Asset kinds to support
 
