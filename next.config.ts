@@ -8,6 +8,29 @@ const nextConfig: NextConfig = {
     formats: ['image/avif', 'image/webp'],
   },
   poweredByHeader: false,
+  /**
+   * Serve the Studio Console at the root of admin.chouinardstudio.com.
+   *
+   * A host-scoped rewrite rather than middleware: it compiles to a routing
+   * rule, so no request runs through a Node runtime and the public site stays
+   * fully static. The rule only matches the admin host, so this branch's
+   * public pages are unaffected.
+   *
+   * This rewrite exists on the `admin/base` branch only.
+   */
+  async rewrites() {
+    return {
+      beforeFiles: [
+        {
+          source: '/',
+          has: [{ type: 'host', value: 'admin.chouinardstudio.com' }],
+          destination: '/admin',
+        },
+      ],
+      afterFiles: [],
+      fallback: [],
+    }
+  },
   async headers() {
     return [
       {
