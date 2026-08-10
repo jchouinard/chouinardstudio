@@ -27,18 +27,18 @@ export interface StudioImageAsset {
 export const studioImages = {
   roomPiano: {
     basename: 'room-piano',
-    widths: [800, 1200, 1400],
-    width: 1400,
-    height: 381,
-    alt: 'Concept view of the Chouinard Studios live room: a grand piano beside a walnut control desk, with a drum kit, guitars and amplifiers arranged under warm practical lighting.',
+    widths: [700, 1100],
+    width: 1100,
+    height: 387,
+    alt: 'Concept view of the Chouinard Studios live room: a grand piano beside a walnut control desk, with a drum kit and guitars under warm practical lighting.',
     source: 'studio-concept-01.jpeg',
   },
   roomCeiling: {
     basename: 'room-ceiling',
-    widths: [800, 1200],
-    width: 1200,
-    height: 425,
-    alt: 'Concept view of the live room showing the timber acoustic ceiling, wall absorption and diffusion behind the instruments.',
+    widths: [600, 799],
+    width: 799,
+    height: 430,
+    alt: 'Concept view of the live room showing the timber acoustic ceiling and wall treatment above the piano and control desk.',
     source: 'studio-concept-02.jpeg',
   },
   ampDetail: {

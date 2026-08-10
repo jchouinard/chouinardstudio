@@ -71,18 +71,25 @@ const DERIVATIVES: Derivative[] = [
     // Keep only the room render: drop the title bar and the "STANDARD VIEW"
     // label above it, the floor plan and features panel below, and the
     // lettered placard at the right edge.
-    crop: { top: 0.108, left: 0.0, width: 0.93, height: 0.38 },
-    widths: [800, 1200, 1400],
-    note: 'Wide room view — grand piano, control desk, drums, guitar wall',
+    // Also trims the right wall. The source lines up several near-identical
+    // amplifier stacks there, which reads as a shop display rather than a
+    // working room and is the clearest sign the render is synthetic. This
+    // frame keeps the piano, desk and kit — the side with no repetition.
+    crop: { top: 0.108, left: 0.0, width: 0.72, height: 0.38 },
+    widths: [700, 1100],
+    note: 'Wide room view — grand piano, control desk and drum kit',
   },
   {
     source: 'studio-concept-02.jpeg',
     name: 'room-ceiling',
     // Same: drop the "CEILING PRINCIPLES" panel overlaying the left, the
     // ceiling plan and materials panels below, and the right-edge placard.
-    crop: { top: 0.075, left: 0.14, width: 0.79, height: 0.42 },
-    widths: [800, 1200],
-    note: 'Wide room view — acoustic ceiling treatment and warm lighting',
+    // Cropped hardest of the four: this one is shown bright and large, so the
+    // duplicated amplifier row and the wall of guitars packed edge to edge
+    // would be most obvious here. Keeps the ceiling — the reason to use it.
+    crop: { top: 0.075, left: 0.14, width: 0.52, height: 0.42 },
+    widths: [600, 799],
+    note: 'Room view — acoustic ceiling treatment above the piano',
   },
   {
     source: 'studio-concept-03.jpeg',

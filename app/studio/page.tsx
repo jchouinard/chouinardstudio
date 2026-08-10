@@ -136,7 +136,7 @@ export default function StudioPage() {
           <figure className="relative overflow-hidden border border-ink-700">
             <StudioImage
               asset={studioImages.roomCeiling}
-              sizes="(min-width: 1024px) 62vw, 100vw"
+              sizes="(min-width: 1024px) 800px, 100vw"
               className="block"
               imgClassName="w-full"
             />

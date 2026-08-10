@@ -243,18 +243,22 @@ export default function HomePage() {
           aria-hidden="true"
         />
 
-        {/* The physical anchor: one controlled full-bleed room moment, with no
-            type laid over it. */}
-        <figure className="relative z-10 border-b border-ink-700">
-          <StudioImage
-            asset={studioImages.roomCeiling}
-            sizes="100vw"
-            className="block"
-            imgClassName="h-[16rem] w-full object-cover sm:h-[22rem] lg:h-[26rem]"
-          />
-        </figure>
+        {/* The physical anchor: one controlled room moment, with no type laid
+            over it. Contained rather than full-bleed — the frame is cropped
+            tight enough to avoid the source's repeated amplifier row, so
+            stretching it edge to edge would only soften it. */}
+        <div className="relative z-10 mx-auto max-w-5xl px-6 pt-16 sm:pt-24">
+          <figure className="overflow-hidden border border-ink-700">
+            <StudioImage
+              asset={studioImages.roomCeiling}
+              sizes="(min-width: 1024px) 61rem, 100vw"
+              className="block"
+              imgClassName="w-full"
+            />
+          </figure>
+        </div>
 
-        <div className="relative z-10 mx-auto max-w-7xl px-6 py-16 sm:py-28">
+        <div className="relative z-10 mx-auto max-w-7xl px-6 pb-16 pt-14 sm:pb-28 sm:pt-20">
           <div className="grid gap-14 lg:grid-cols-[minmax(0,1fr)_minmax(0,26rem)] lg:gap-20">
             <div>
               <p className="eyebrow">The room</p>
