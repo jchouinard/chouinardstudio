@@ -116,6 +116,8 @@ Improvements to retrieval must not break grounding. Improvements to freshness mu
 | [FUTURE-FIXTURES.md](FUTURE-FIXTURES.md) | Controlled states some tests need, none built yet |
 | [FIRST-TRIAL-PROTOCOL.md](FIRST-TRIAL-PROTOCOL.md) | Exact procedure for the first real run |
 | [AI-SUPPORT-HANDOFF.md](AI-SUPPORT-HANDOFF.md) | The bridge document to carry into the AI Support repository |
+| [INSTALL-FINDINGS-CHOUINARD.md](INSTALL-FINDINGS-CHOUINARD.md) | What happened installing the site harness here — implementation evidence |
+| [SITE-HARNESS-INSTALL-GUIDANCE.md](SITE-HARNESS-INSTALL-GUIDANCE.md) | Generalisable install guidance and product findings for the AI Support team |
 
 ## Existing AI Support modules are hypotheses
 
